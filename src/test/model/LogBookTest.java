@@ -6,8 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LogBookTest {
     private LogItem l1;
@@ -44,5 +43,23 @@ public class LogBookTest {
         lb1.addLog(l2);
         assertEquals(1,lb1.size());
     }
+
+    @Test
+    public void removeLogTest() {
+        lb1.addLog(l2);
+        lb1.addLog(l1);
+        lb1.removeLog(l2);
+        assertTrue(lb1.containsLog(l1));
+        assertFalse(lb1.containsLog(l2));
+
+    }
+
+    @Test
+    public void totalAmountLeftTest() {
+        lb1.addLog(l2);
+        lb1.addLog(l1);
+        assertEquals(975,lb1.totalAmountLeft());
+    }
+
 }
 

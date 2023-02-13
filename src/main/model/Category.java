@@ -1,25 +1,32 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
+
 
 public class Category {
     private String categoryName;
-    private ArrayList<LogItem> categoryItems;
+    private List<LogItem> categoryItems;
 
     public Category(String categoryName) {
         categoryItems = new ArrayList<>();
         this.categoryName = categoryName;
     }
 
-    public void addLog(LogItem logItem) {
+    public boolean addLogToCategory(LogItem logItem) {
         if (!categoryItems.contains(logItem)) {
             categoryItems.add(logItem);
+            logItem.setCategory(this);
+            return true;
+        } else {
+            return false;
         }
     }
 
-    public void removeLog(LogItem logItem) {
+    public void removeLogFromCategory(LogItem logItem) {
         if (categoryItems.contains(logItem)) {
             categoryItems.remove(logItem);
+            logItem.removeCategory(this);
         }
     }
 
@@ -27,16 +34,10 @@ public class Category {
         return categoryName;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
 
-    public ArrayList<LogItem> getCategoryItems() {
+    public List<LogItem> getCategoryItems() {
         return categoryItems;
     }
 
-    public void setCategoryItems(ArrayList<LogItem> categoryItems) {
-        this.categoryItems = categoryItems;
-    }
 
 }

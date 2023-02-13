@@ -27,19 +27,23 @@ public class LogBook {
         return sum;
     }
 
-    public double totalAmountForMonth() {
-        double sum = 0;
-        Month month = LocalDate.now().getMonth();
-        for (LogItem log : logbook) {
-            if (log.getDate().getMonth() == month) {
-                sum = sum + log.getAmount();
-            }
-        }
-        return sum;
-    }
+//    public double totalAmountForMonth() {
+//        double sum = 0;
+//        Month month = LocalDate.now().getMonth();
+//        for (LogItem log : logbook) {
+//            if (log.getDate().getMonth() == month) {
+//                sum = sum + log.getAmount();
+//            }
+//        }
+//        return sum;
+//    }
 
     public int size() {
         return logbook.size();
+    }
+
+    public boolean containsLog(LogItem logItem) {
+        return logbook.contains(logItem);
     }
 
 
