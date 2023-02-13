@@ -42,4 +42,15 @@ class LogItemTest {
         l2.removeCategory(l2.getCategory());
         assertEquals(null,l2.getCategory());
     }
+
+    @Test
+    public void getDate() {
+        assertEquals(LocalDate.of(2023,1,1),l1.getDate());
+    }
+
+    @Test
+    public void getAmount() {
+        assertEquals(0,l1.getAmount());
+        assertEquals(1000,l2.getAmount());
+    }
 }
