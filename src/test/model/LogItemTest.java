@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class LogItemTest {
     LogItem l1;
@@ -28,7 +28,7 @@ class LogItemTest {
 
     @Test
     public void notYetCategorized() {
-        assertEquals(null,l1.getCategory());
+        assertNull(l1.getCategory());
     }
 
     @Test
@@ -40,16 +40,21 @@ class LogItemTest {
     @Test
     public void changeCategory() {
         l2.removeCategory(l2.getCategory());
-        assertEquals(null,l2.getCategory());
+        assertNull(l2.getCategory());
     }
 
     @Test
-    public void getDate() {
+    public void changeCategoryFail() {
+        assertFalse(l1.removeCategory(l1.getCategory()));
+    }
+
+    @Test
+    public void getDateTest() {
         assertEquals(LocalDate.of(2023,1,1),l1.getDate());
     }
 
     @Test
-    public void getAmount() {
+    public void getAmountTest() {
         assertEquals(0,l1.getAmount());
         assertEquals(1000,l2.getAmount());
     }

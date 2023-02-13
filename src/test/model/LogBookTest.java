@@ -38,5 +38,11 @@ public class LogBookTest {
     public void constructorTest() {
         assertEquals(0, lb1.size());
     }
+
+    @Test
+    public void addLogTest() {
+        lb1.addLog(l2);
+        assertEquals(1,lb1.size());
+    }
 }
 
