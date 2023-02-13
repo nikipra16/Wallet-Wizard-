@@ -1,11 +1,11 @@
 package model;
 
 import java.time.Month;
-import java.util.ArrayList;
+import java.util.*;
 import java.time.LocalDate;
 
 public class LogBook {
-    private  ArrayList<LogItem> logbook;
+    private final List<LogItem> logbook;
 
     public LogBook() {
         logbook = new ArrayList<>();
@@ -36,6 +36,10 @@ public class LogBook {
             }
         }
         return sum;
+    }
+
+    public int size() {
+        return logbook.size();
     }
 
 
