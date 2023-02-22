@@ -45,11 +45,13 @@ public class LogItem {
     // }
 
     public void changeCategory(Category category) {
-        if (!this.category.getCategoryName().equals("Not Categorized") && this.category == category) {
-            this.category = new Category("Not Categorized");
-            category.removeLogFromCategory(this);
-        } else if (this.category != category) {
-            setCategory(category);
+        if (!this.category.getCategoryName().equals("Not Categorized")) {
+            if (this.category == category) {
+                this.category = new Category("Not Categorized");
+                category.removeLogFromCategory(this);
+            } else if (this.category != category) {
+                setCategory(category);
+            }
         }
     }
 }

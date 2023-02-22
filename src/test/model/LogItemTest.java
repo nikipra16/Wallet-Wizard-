@@ -33,6 +33,7 @@ class LogItemTest {
 
     @Test
     public void justCategorized() {
+        assertEquals("Not Categorized",l1.getCategory().getCategoryName());
         l1.setCategory(c1);
         assertEquals(c1,l1.getCategory());
     }
@@ -45,8 +46,18 @@ class LogItemTest {
 
     @Test
     public void removeCategory() {
+        l2.setCategory(c1);
+        assertEquals(c1,l2.getCategory());
         l2.changeCategory(c1);
-        assertEquals("Not Categorized",l1.getCategory().getCategoryName());
+        assertEquals("Not Categorized",l2.getCategory().getCategoryName());
+    }
+
+    @Test
+    public void changeCategory() {
+        l2.setCategory(c1);
+        assertEquals(c1,l2.getCategory());
+        l2.changeCategory(c2);
+        assertEquals("Shopping",l2.getCategory().getCategoryName());
     }
 
     @Test
