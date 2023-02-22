@@ -38,14 +38,15 @@ class LogItemTest {
     }
 
     @Test
-    public void changeCategory() {
-        l2.changeCategory(c4);
+    public void changeCategoryToDifferent() {
+        l2.setCategory(c4);
         assertEquals("Food",l2.getCategory().getCategoryName());
     }
 
     @Test
-    public void changeCategoryFail() {
-        assertFalse(l1.changeCategory(l1.getCategory()));
+    public void removeCategory() {
+        l2.changeCategory(c1);
+        assertEquals("Not Categorized",l1.getCategory().getCategoryName());
     }
 
     @Test
