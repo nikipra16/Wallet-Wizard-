@@ -22,13 +22,13 @@ class LogItemTest {
         c3 = new Category("Grocery");
         c4 = new Category("Food");
 
-        l1 = new LogItem(LocalDate.of(2023,1,1),0,null);
+        l1 = new LogItem(LocalDate.of(2023,1,1),0,new Category("Not Categorized"));
         l2 = new LogItem(LocalDate.of(2023, 1, 2),1000,c1);
     }
 
     @Test
     public void notYetCategorized() {
-        assertNull(l1.getCategory());
+        assertEquals("Not Categorized",l1.getCategory().getCategoryName());
     }
 
     @Test
@@ -39,13 +39,13 @@ class LogItemTest {
 
     @Test
     public void changeCategory() {
-        l2.removeCategory(l2.getCategory());
-        assertNull(l2.getCategory());
+        l2.changeCategory(c4);
+        assertEquals("Food",l2.getCategory().getCategoryName());
     }
 
     @Test
     public void changeCategoryFail() {
-        assertFalse(l1.removeCategory(l1.getCategory()));
+        assertFalse(l1.changeCategory(l1.getCategory()));
     }
 
     @Test

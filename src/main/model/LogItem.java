@@ -10,7 +10,7 @@ public class LogItem {
     public LogItem(LocalDate date, double amount, Category category) {
         this.date = date;
         this.amount = amount;
-        this.category = category;
+        this.category = new Category("Not Categorized");
     }
 
     public LocalDate getDate() {
@@ -21,7 +21,7 @@ public class LogItem {
         return amount;
     }
 
-   // public void setAmount(double amount) {
+    // public void setAmount(double amount) {
     //    this.amount = amount;
     //}
 
@@ -30,22 +30,29 @@ public class LogItem {
     }
 
     public void setCategory(Category category) {
-        this.category = category;
+        if (this.category.getCategoryName().equals("Not Categorized") || this.category != category) {
+            this.category = category;
+            category.addLogToCategory(this);
+        }
     }
 
     //public boolean giveCategory(Category category) {
-      //  if (category == null) {
-      //      this.category = category;
+    //  if (category == null) {
+    //      this.category = category;
 
-       // }
-       // return true;
-   // }
+    // }
+    // return true;
+    // }
 
-    public boolean removeCategory(Category category) {
-        if (this.category != null) {
-            setCategory(null);
+    public boolean changeCategory(Category category) {
+        if (!this.category.getCategoryName().equals("Not Categorized") && this.category == category) {
+            this.category = new Category("Not Categorized");
+            category.removeLogFromCategory(this);
+        } else if (this.category != category) {
+            setCategory(category);
         }
         return false;
     }
 
 }
+

@@ -5,8 +5,8 @@ import java.util.List;
 
 
 public class Category {
-    private String categoryName;
-    private List<LogItem> categoryItems;
+    private final String categoryName;
+    private final ArrayList<LogItem> categoryItems;
 
     public Category(String categoryName) {
         categoryItems = new ArrayList<>();
@@ -26,7 +26,7 @@ public class Category {
     public void removeLogFromCategory(LogItem logItem) {
         if (categoryItems.contains(logItem)) {
             categoryItems.remove(logItem);
-            logItem.removeCategory(this);
+            logItem.changeCategory(this);
         }
     }
 

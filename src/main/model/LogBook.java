@@ -1,11 +1,9 @@
 package model;
 
-import java.time.Month;
-import java.util.*;
-import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class LogBook {
-    private final List<LogItem> logbook;
+    private final ArrayList<LogItem> logbook;
 
     public LogBook() {
         logbook = new ArrayList<>();
