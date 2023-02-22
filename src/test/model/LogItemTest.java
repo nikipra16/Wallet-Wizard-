@@ -56,7 +56,9 @@ class LogItemTest {
     public void changeCategory() {
         l2.setCategory(c1);
         assertEquals(c1,l2.getCategory());
+        assertTrue(!c1.equals(c2));
         l2.changeCategory(c2);
+        assertTrue(!c1.equals(c2));
         assertEquals("Shopping",l2.getCategory().getCategoryName());
         assertEquals(c2,l2.getCategory());
     }
