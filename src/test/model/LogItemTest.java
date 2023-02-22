@@ -58,6 +58,7 @@ class LogItemTest {
         assertEquals(c1,l2.getCategory());
         l2.changeCategory(c2);
         assertEquals("Shopping",l2.getCategory().getCategoryName());
+        assertEquals(c2,l2.getCategory());
     }
 
     @Test
