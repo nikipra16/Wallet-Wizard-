@@ -49,7 +49,7 @@ public class LogItem {
             if (this.category == category) {
                 this.category = new Category("Not Categorized");
                 category.removeLogFromCategory(this);
-            } else if (this.category != category) {
+            } else  {
                 setCategory(category);
             }
         }
