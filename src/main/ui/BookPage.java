@@ -74,7 +74,9 @@ public class BookPage {
         int month = input.nextInt();
         System.out.print("Enter budget amount: ");
         double amount = input.nextDouble();
+        budget = new Budget();
         budget.setMonthlyBudget(amount,Month.of(month));
+        System.out.println("A budget of " + budget.getBudget() + " for " + budget.getMonth());
     }
 
     private void getMonthlyExpenditure() {
