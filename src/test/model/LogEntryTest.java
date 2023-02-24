@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class logEntryTest {
+class LogEntryTest {
     LogEntry l1;
     LogEntry l2;
     Category c1;
@@ -56,9 +56,9 @@ class logEntryTest {
     public void changeCategory() {
         l2.setCategory(c1);
         assertEquals(c1,l2.getCategory());
-        assertTrue(!c1.equals(c2));
+        assertNotEquals(c1, c2);
         l2.changeCategory(c2);
-        assertTrue(!c1.equals(c2));
+        assertNotEquals(c1, c2);
         assertEquals("Shopping",l2.getCategory().getCategoryName());
         assertEquals(c2,l2.getCategory());
     }

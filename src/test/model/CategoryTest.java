@@ -8,19 +8,17 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CategoryTest {
-    private LogEntry l1;
+//    private LogEntry l1;
     private LogEntry l2;
     private Category c1;
-    private Category c2;
 
     private List<LogEntry> c1Items;
 
     @BeforeEach
     void runBefore() {
         c1 = new Category("Salary");
-        c2 = new Category("Shopping");
 
-        l1 = new LogEntry(LocalDate.of(2023, 1, 1), -25);
+//        l1 = new LogEntry(LocalDate.of(2023, 1, 1), -25);
         l2 = new LogEntry(LocalDate.of(2023, 1, 2), 1000);
 
         c1Items = c1.getCategoryLogs();
