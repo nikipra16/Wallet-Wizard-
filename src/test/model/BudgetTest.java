@@ -3,7 +3,7 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
+import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -24,8 +24,8 @@ public class BudgetTest {
 
     @Test
     public void setBudgetTest() {
-        b1.setMonthlyBudget(150, LocalDate.of(2023,1,1));
+        b1.setMonthlyBudget(150, Month.of(1));
         assertEquals(150,b1.getBudget());
-        assertEquals(LocalDate.of(2023,1,1),b1.getMonth());
+        assertEquals(Month.of(1),b1.getMonth());
     }
 }

@@ -1,6 +1,7 @@
 package ui;
 
 import model.Book;
+import model.Budget;
 import model.Category;
 import model.LogEntry;
 
@@ -17,6 +18,7 @@ public class BookPage {
     private Scanner input;
     private LocalDate logDate;
     private String categoryName;
+    private Budget budget;
 
 
     // EFFECTS: runs the teller application
@@ -52,7 +54,7 @@ public class BookPage {
         } else if (command.equals("b")) {
             getMonthlyExpenditure();
         } else if (command.equals("c")) {
-            System.out.println("nothing");
+            setMonthlyBudget();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -65,6 +67,14 @@ public class BookPage {
         System.out.println("\t[b] Get expenditure for a Month");
         System.out.println("\t[c] Set budget for a Month");
         System.out.println("\t[d] quit");
+    }
+
+    private void setMonthlyBudget() {
+        System.out.print("Enter month number: ");
+        int month = input.nextInt();
+        System.out.print("Enter budget amount: ");
+        double amount = input.nextDouble();
+        budget.setMonthlyBudget(amount,Month.of(month));
     }
 
     private void getMonthlyExpenditure() {

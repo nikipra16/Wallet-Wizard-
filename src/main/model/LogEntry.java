@@ -21,10 +21,6 @@ public class LogEntry {
         return amount;
     }
 
-    // public void setAmount(double amount) {
-    //    this.amount = amount;
-    //}
-
     public Category getCategory() {
         return category;
     }
@@ -35,14 +31,6 @@ public class LogEntry {
             category.addLogToCategory(this);
         }
     }
-
-    //public boolean giveCategory(Category category) {
-    //  if (category == null) {
-    //      this.category = category;
-
-    // }
-    // return true;
-    // }
 
     public void changeCategory(Category category) {
         if (!this.category.getCategoryName().equals("Not Categorized")) {

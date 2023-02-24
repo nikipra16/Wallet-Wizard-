@@ -1,10 +1,11 @@
 package model;
 
 import java.time.LocalDate;
+import java.time.Month;
 
 public class Budget {
     private double budget;
-    private LocalDate month;
+    private Month month;
 
     public Budget() {
         this.budget = 0;
@@ -19,11 +20,11 @@ public class Budget {
         return budget;
     }
 
-    public LocalDate getMonth() {
+    public Month getMonth() {
         return month;
     }
 
-    public void setMonthlyBudget(double budget, LocalDate month) {
+    public void setMonthlyBudget(double budget, Month month) {
         this.month = month;
         this.budget = budget;
 
