@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class LogEntry {
     private final LocalDate date;
-    private double amount;
+    private final double amount;
     private Category category;
 
     public LogEntry(LocalDate date, double amount) {

@@ -11,14 +11,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class BookPage {
-//    private double deb;
-//    private double cred;
-//    double amount;
     private Book logBook;
     private Scanner input;
-//    private LocalDate logDate;
-    private String categoryName;
-    private Budget budget;
 
 
     // EFFECTS: runs the teller application
@@ -91,7 +85,7 @@ public class BookPage {
         int month = input.nextInt();
         System.out.print("Enter budget amount: ");
         double amount = input.nextDouble();
-        budget = new Budget();
+        Budget budget = new Budget();
         budget.setMonthlyBudget(amount,Month.of(month));
         System.out.println("A budget of " + budget.getBudget() + " for " + budget.getMonth());
     }
@@ -116,7 +110,7 @@ public class BookPage {
         System.out.print("Enter amount: $");
         double amount = input.nextDouble();
         System.out.print("Enter category: ");
-        categoryName = input.next();
+        String categoryName = input.next();
         Category category = new Category(categoryName);
         LogEntry log = new LogEntry(logDate, amount);
         log.setCategory(category);
