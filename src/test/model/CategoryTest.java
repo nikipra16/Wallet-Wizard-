@@ -1,5 +1,4 @@
 package model;
-import model.Category;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,20 +8,20 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CategoryTest {
-    private LogItem l1;
-    private LogItem l2;
+    private logEntry l1;
+    private logEntry l2;
     private Category c1;
     private Category c2;
 
-    private List<LogItem> c1Items;
+    private List<logEntry> c1Items;
 
     @BeforeEach
     void runBefore() {
         c1 = new Category("Salary");
         c2 = new Category("Shopping");
 
-        l1 = new LogItem(LocalDate.of(2023, 1, 1), -25, c2);
-        l2 = new LogItem(LocalDate.of(2023, 1, 2), 1000, c1);
+        l1 = new logEntry(LocalDate.of(2023, 1, 1), -25, c2);
+        l2 = new logEntry(LocalDate.of(2023, 1, 2), 1000, c1);
 
         c1Items = c1.getCategoryItems();
 

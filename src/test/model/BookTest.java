@@ -3,32 +3,27 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class LogBookTest {
-    private LogItem l1;
-    private LogItem l2;
+public class BookTest {
+    private logEntry l1;
+    private logEntry l2;
     private Category c1;
     private Category c2;
-    private Category c3;
-    private Category c4;
 
-    private LogBook lb1;
+    private Book lb1;
 
     @BeforeEach
     void runBefore() {
         c1 = new Category("Salary");
         c2 = new Category("Shopping");
-        c3 = new Category("Grocery");
-        c4 = new Category("Food");
 
-        l1 = new LogItem(LocalDate.of(2023, 1, 1), -25, c2);
-        l2 = new LogItem(LocalDate.of(2023, 1, 2), 1000, c1);
+        l1 = new logEntry(LocalDate.of(2023, 1, 1), -25, c2);
+        l2 = new logEntry(LocalDate.of(2023, 1, 2), 1000, c1);
 
-        lb1 = new LogBook();
+        lb1 = new Book();
 
 
     }
@@ -61,5 +56,14 @@ public class LogBookTest {
         assertEquals(975,lb1.totalAmountLeft());
     }
 
+    @Test
+    public void monthlySpendingTest() {
+        lb1.addLog(l2);
+        lb1.addLog(l2);
+        lb1.addLog(l1);
+        assertEquals(3,lb1.size());
+        assertTrue(lb1.containsLog(l1));
+        assertEquals(1975,lb1.monthlyExpenditure(Month.of(1)));
+    }
 }
 

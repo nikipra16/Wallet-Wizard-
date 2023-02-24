@@ -6,27 +6,27 @@ import java.util.List;
 
 public class Category {
     private final String categoryName;
-    private final ArrayList<LogItem> categoryItems;
+    private final ArrayList<logEntry> categoryItems;
 
     public Category(String categoryName) {
         categoryItems = new ArrayList<>();
         this.categoryName = categoryName;
     }
 
-    public boolean addLogToCategory(LogItem logItem) {
-        if (!categoryItems.contains(logItem)) {
-            categoryItems.add(logItem);
-            logItem.setCategory(this);
+    public boolean addLogToCategory(logEntry logEntry) {
+        if (!categoryItems.contains(logEntry)) {
+            categoryItems.add(logEntry);
+            logEntry.setCategory(this);
             return true;
         } else {
             return false;
         }
     }
 
-    public void removeLogFromCategory(LogItem logItem) {
-        if (categoryItems.contains(logItem)) {
-            categoryItems.remove(logItem);
-            logItem.changeCategory(this);
+    public void removeLogFromCategory(logEntry logEntry) {
+        if (categoryItems.contains(logEntry)) {
+            categoryItems.remove(logEntry);
+            logEntry.changeCategory(this);
         }
     }
 
@@ -35,7 +35,7 @@ public class Category {
     }
 
 
-    public List<LogItem> getCategoryItems() {
+    public List<logEntry> getCategoryItems() {
         return categoryItems;
     }
 
