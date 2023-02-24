@@ -5,6 +5,7 @@ import model.Category;
 import model.LogEntry;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
@@ -35,14 +36,10 @@ public class BookPage {
             displayMenu();
             command = input.next();
             command = command.toLowerCase();
-            if (command.equals("1")) {
+            if (command.equals("d")) {
+                keepGoing = false;
+            } else {
                 processCommand(command);
-            }
-            if (command.equals("2")) {
-                keepGoing = false;
-            }
-            if (command.equals("3")) {
-                keepGoing = false;
             }
         }
 
@@ -50,35 +47,53 @@ public class BookPage {
     }
 
     private void processCommand(String command) {
-        if (command.equals("1")) {
+        if (command.equals("a")) {
             addLogEntry();
+        } else if (command.equals("b")) {
+            getMonthlyExpenditure();
+        } else if (command.equals("c")) {
+            System.out.println("nothing");
         } else {
             System.out.println("Selection not valid...");
         }
     }
 
+
     private void displayMenu() {
         System.out.println("Select from the following options:");
-        System.out.println("\t[1] Make a new entry");
-        System.out.println("\t[2] Set a budget for a Month");
-        System.out.println("\t[3] quit");
+        System.out.println("\t[a] Make a new entry");
+        System.out.println("\t[b] Get expenditure for a Month");
+        System.out.println("\t[c] Set budget for a Month");
+        System.out.println("\t[d] quit");
     }
 
+    private void getMonthlyExpenditure() {
+        System.out.print("Enter month number: ");
+        int month = input.nextInt();
+        if (logBook.size() > 0) {
+            double total;
+            total = logBook.monthlyExpenditure(Month.of(month));
+            System.out.println(total);
+        } else {
+            System.out.println("No entries");
+        }
+    }
 
     private void addLogEntry() {
+        System.out.print("Enter date: yyyy/mm/dd: ");
+        String date = input.next();
+        DateTimeFormatter d = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDate logDate = LocalDate.parse(date, d);
         System.out.print("Enter amount: $");
         double amount = input.nextDouble();
         System.out.print("Enter category: ");
         categoryName = input.next();
         Category category = new Category(categoryName);
-        System.out.print("Enter date: yyyy/mm/dd: ");
-        String date = input.next();
-        DateTimeFormatter d = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        LocalDate logDate = LocalDate.parse(date, d);
         LogEntry log = new LogEntry(logDate, amount, category);
         log.setCategory(category);
         logBook.addLog(log);
-        System.out.println("Added $" + log.getAmount() + " to your Book under " + category.getCategoryName());
+        System.out.println("Added $" + log.getAmount() + " to your Book under " + category.getCategoryName()
+                + ".");
     }
 
 
