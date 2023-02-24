@@ -2,12 +2,12 @@ package model;
 
 import java.time.LocalDate;
 
-public class logEntry {
+public class LogEntry {
     private final LocalDate date;
     private double amount;
     private Category category;
 
-    public logEntry(LocalDate date, double amount, Category category) {
+    public LogEntry(LocalDate date, double amount, Category category) {
         this.date = date;
         this.amount = amount;
         this.category = new Category("Not Categorized");

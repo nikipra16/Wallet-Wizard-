@@ -2,9 +2,8 @@ package ui;
 
 import model.Book;
 import model.Category;
-import model.logEntry;
+import model.LogEntry;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -76,7 +75,7 @@ public class BookPage {
         String date = input.next();
         DateTimeFormatter d = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate logDate = LocalDate.parse(date, d);
-        logEntry log = new logEntry(logDate, amount, category);
+        LogEntry log = new LogEntry(logDate, amount, category);
         log.setCategory(category);
         logBook.addLog(log);
         System.out.println("Added $" + log.getAmount() + " to your Book under " + category.getCategoryName());

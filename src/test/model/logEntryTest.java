@@ -8,8 +8,8 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 class logEntryTest {
-    logEntry l1;
-    logEntry l2;
+    LogEntry l1;
+    LogEntry l2;
     Category c1;
     Category c2;
     Category c3;
@@ -22,8 +22,8 @@ class logEntryTest {
         c3 = new Category("Grocery");
         c4 = new Category("Food");
 
-        l1 = new logEntry(LocalDate.of(2023,1,1),0,new Category("Not Categorized"));
-        l2 = new logEntry(LocalDate.of(2023, 1, 2),1000,c1);
+        l1 = new LogEntry(LocalDate.of(2023,1,1),0,new Category("Not Categorized"));
+        l2 = new LogEntry(LocalDate.of(2023, 1, 2),1000,c1);
     }
 
     @Test

@@ -8,8 +8,8 @@ import java.time.Month;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BookTest {
-    private logEntry l1;
-    private logEntry l2;
+    private LogEntry l1;
+    private LogEntry l2;
     private Category c1;
     private Category c2;
 
@@ -20,8 +20,8 @@ public class BookTest {
         c1 = new Category("Salary");
         c2 = new Category("Shopping");
 
-        l1 = new logEntry(LocalDate.of(2023, 1, 1), -25, c2);
-        l2 = new logEntry(LocalDate.of(2023, 1, 2), 1000, c1);
+        l1 = new LogEntry(LocalDate.of(2023, 1, 1), -25, c2);
+        l2 = new LogEntry(LocalDate.of(2023, 1, 2), 1000, c1);
 
         lb1 = new Book();
 
