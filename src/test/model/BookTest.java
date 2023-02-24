@@ -20,7 +20,7 @@ public class BookTest {
         c1 = new Category("Salary");
         c2 = new Category("Shopping");
 
-        l1 = new LogEntry(LocalDate.of(2023, 1, 1), -25, c2);
+        l1 = new LogEntry(LocalDate.of(2023, 2, 1), -25, c2);
         l2 = new LogEntry(LocalDate.of(2023, 1, 2), 1000, c1);
 
         lb1 = new Book();
@@ -63,7 +63,7 @@ public class BookTest {
         lb1.addLog(l1);
         assertEquals(3,lb1.size());
         assertTrue(lb1.containsLog(l1));
-        assertEquals(1975,lb1.monthlyExpenditure(Month.of(1)));
+        assertEquals(2000,lb1.monthlyExpenditure(Month.of(1)));
     }
 }
 
