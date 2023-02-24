@@ -23,7 +23,7 @@ public class CategoryTest {
         l1 = new LogEntry(LocalDate.of(2023, 1, 1), -25, c2);
         l2 = new LogEntry(LocalDate.of(2023, 1, 2), 1000, c1);
 
-        c1Items = c1.getCategoryItems();
+        c1Items = c1.getCategoryLogs();
 
     }
 

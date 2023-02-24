@@ -16,7 +16,7 @@ public class BookPage {
 //    double amount;
     private Book logBook;
     private Scanner input;
-    private LocalDate logDate;
+//    private LocalDate logDate;
     private String categoryName;
     private Budget budget;
 
@@ -38,7 +38,7 @@ public class BookPage {
             displayMenu();
             command = input.next();
             command = command.toLowerCase();
-            if (command.equals("d")) {
+            if (command.equals("e")) {
                 keepGoing = false;
             } else {
                 processCommand(command);
@@ -55,6 +55,8 @@ public class BookPage {
             getMonthlyExpenditure();
         } else if (command.equals("c")) {
             setMonthlyBudget();
+        } else if (command.equals("d")) {
+            getBalance();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -66,7 +68,22 @@ public class BookPage {
         System.out.println("\t[a] Make a new entry");
         System.out.println("\t[b] Get expenditure for a Month");
         System.out.println("\t[c] Set budget for a Month");
-        System.out.println("\t[d] quit");
+        System.out.println("\t[d] Get Balance");
+        System.out.println("\t[e] quit");
+    }
+
+    private void getBalance() {
+        System.out.print("Your Balance:");
+        if (logBook.size() > 0) {
+            double total;
+            total = logBook.totalAmountLeft();
+            System.out.println(total);
+            if (total <= 0) {
+                System.out.println("YOU ARE IN DEBT!!!");
+            }
+        } else {
+            System.out.println("No entries");
+        }
     }
 
     private void setMonthlyBudget() {

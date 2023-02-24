@@ -15,15 +15,17 @@ public class Budget {
 //    public void setBudget(double budget) {
 //        this.budget = budget;
 //    }
-
+    //EFFECTS: returns the budget in $
     public double getBudget() {
         return budget;
     }
 
+    //EFFECTS: returns month
     public Month getMonth() {
         return month;
     }
 
+    //MODIFIES: this
     public void setMonthlyBudget(double budget, Month month) {
         this.month = month;
         this.budget = budget;
