@@ -22,8 +22,8 @@ class logEntryTest {
         c3 = new Category("Grocery");
         c4 = new Category("Food");
 
-        l1 = new LogEntry(LocalDate.of(2023,2,1),0,new Category("Not Categorized"));
-        l2 = new LogEntry(LocalDate.of(2023, 1, 2),1000,c1);
+        l1 = new LogEntry(LocalDate.of(2023,2,1),0);
+        l2 = new LogEntry(LocalDate.of(2023, 1, 2),1000);
     }
 
     @Test

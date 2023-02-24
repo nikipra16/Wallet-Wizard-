@@ -7,7 +7,7 @@ public class LogEntry {
     private double amount;
     private Category category;
 
-    public LogEntry(LocalDate date, double amount, Category category) {
+    public LogEntry(LocalDate date, double amount) {
         this.date = date;
         this.amount = amount;
         this.category = new Category("Not Categorized");

@@ -118,7 +118,7 @@ public class BookPage {
         System.out.print("Enter category: ");
         categoryName = input.next();
         Category category = new Category(categoryName);
-        LogEntry log = new LogEntry(logDate, amount, category);
+        LogEntry log = new LogEntry(logDate, amount);
         log.setCategory(category);
         logBook.addLog(log);
         System.out.println("Added $" + log.getAmount() + " to your Book under " + category.getCategoryName()
