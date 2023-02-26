@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BookTest {
     private LogEntry l1;
     private LogEntry l2;
+    private LogEntry l3;
 
 
     private Book lb1;
@@ -19,6 +20,7 @@ public class BookTest {
 
         l1 = new LogEntry(LocalDate.of(2023, 3, 1), -25);
         l2 = new LogEntry(LocalDate.of(2023, 1, 2), 1000);
+        l3 = new LogEntry(LocalDate.of(2019, 1, 2), 100);
 
         lb1 = new Book();
 
@@ -54,11 +56,19 @@ public class BookTest {
     }
 
     @Test
+    public void totalAmountLeftDifferentYearTest() {
+        lb1.addLog(l2);
+        lb1.addLog(l3);
+        assertEquals(1000,lb1.totalAmountLeft());
+    }
+
+    @Test
     public void monthlySpendingTest() {
         lb1.addLog(l2);
         lb1.addLog(l2);
         lb1.addLog(l1);
-        assertEquals(3,lb1.size());
+        lb1.addLog(l3);
+        assertEquals(4,lb1.size());
         assertTrue(lb1.containsLog(l1));
         assertEquals(2000,lb1.monthlyExpenditure(YearMonth.of(2023,1)));
     }
