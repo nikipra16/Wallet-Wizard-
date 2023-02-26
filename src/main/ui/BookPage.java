@@ -101,10 +101,10 @@ public class BookPage {
         System.out.print("Enter month number: ");
         String date = input.next();
         DateTimeFormatter d = DateTimeFormatter.ofPattern("yyyy/MM");
-        YearMonth yymm = YearMonth.parse(date, d);
+        YearMonth yearMonth = YearMonth.parse(date, d);
         if (logBook.size() > 0) {
             double total;
-            total = logBook.monthlyExpenditure(yymm);
+            total = logBook.monthlyExpenditure(yearMonth);
             System.out.println(total);
         } else {
             System.out.println("No entries");

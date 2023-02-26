@@ -3,8 +3,8 @@ package model;
 import java.time.LocalDate;
 
 public class LogEntry {
-    private final LocalDate date;
-    private final double amount;
+    private LocalDate date;
+    private double amount;
     private Category category;
 
     public LogEntry(LocalDate date, double amount) {

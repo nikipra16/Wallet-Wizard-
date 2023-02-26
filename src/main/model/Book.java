@@ -4,7 +4,7 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 
 public class Book {
-    private final ArrayList<LogEntry> logbook;
+    private  ArrayList<LogEntry> logbook;
 
     public Book() {
         logbook = new ArrayList<>();

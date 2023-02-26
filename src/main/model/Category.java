@@ -5,8 +5,8 @@ import java.util.List;
 
 
 public class Category {
-    private final String categoryName;
-    private final ArrayList<LogEntry> categoryLogs;
+    private String categoryName;
+    private ArrayList<LogEntry> categoryLogs;
 
     public Category(String categoryName) {
         categoryLogs = new ArrayList<>();
