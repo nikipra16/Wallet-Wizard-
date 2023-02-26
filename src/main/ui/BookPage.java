@@ -7,6 +7,7 @@ import model.LogEntry;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
@@ -43,16 +44,22 @@ public class BookPage {
     }
 
     private void processCommand(String command) {
-        if (command.equals("a")) {
-            addLogEntry();
-        } else if (command.equals("b")) {
-            getMonthlyExpenditure();
-        } else if (command.equals("c")) {
-            setMonthlyBudget();
-        } else if (command.equals("d")) {
-            getBalance();
-        } else {
-            System.out.println("Selection not valid...");
+        switch (command) {
+            case "a":
+                addLogEntry();
+                break;
+            case "b":
+                getMonthlyExpenditure();
+                break;
+            case "c":
+                setMonthlyBudget();
+                break;
+            case "d":
+                getBalance();
+                break;
+            default:
+                System.out.println("Selection not valid...");
+                break;
         }
     }
 
@@ -67,7 +74,7 @@ public class BookPage {
     }
 
     private void getBalance() {
-        System.out.print("Your Balance:");
+        System.out.println("Your Balance:");
         if (logBook.size() > 0) {
             double total;
             total = logBook.totalAmountLeft();
@@ -76,7 +83,7 @@ public class BookPage {
                 System.out.println("YOU ARE IN DEBT!!!");
             }
         } else {
-            System.out.println("No entries");
+            System.out.println("No entries made yet!");
         }
     }
 
@@ -92,10 +99,12 @@ public class BookPage {
 
     private void getMonthlyExpenditure() {
         System.out.print("Enter month number: ");
-        int month = input.nextInt();
+        String date = input.next();
+        DateTimeFormatter d = DateTimeFormatter.ofPattern("yyyy/MM");
+        YearMonth yymm = YearMonth.parse(date, d);
         if (logBook.size() > 0) {
             double total;
-            total = logBook.monthlyExpenditure(Month.of(month));
+            total = logBook.monthlyExpenditure(yymm);
             System.out.println(total);
         } else {
             System.out.println("No entries");

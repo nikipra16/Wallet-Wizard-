@@ -1,6 +1,6 @@
 package model;
 
-import java.time.Month;
+import java.time.YearMonth;
 import java.util.ArrayList;
 
 public class Book {
@@ -32,10 +32,10 @@ public class Book {
     }
 
     //EFFECTS: returns total amount spent/earned in a month
-    public double monthlyExpenditure(Month month) {
+    public double monthlyExpenditure(YearMonth yearMonth) {
         double sum = 0;
         for (LogEntry log : logbook) {
-            if (log.getDate().getMonth() == month) {
+            if (log.getDate().getMonth() == yearMonth.getMonth() && log.getDate().getYear() == yearMonth.getYear()) {
                 sum = sum + log.getAmount();
             }
         }

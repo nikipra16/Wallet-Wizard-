@@ -3,7 +3,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.time.Month;
+import java.time.YearMonth;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -60,7 +60,7 @@ public class BookTest {
         lb1.addLog(l1);
         assertEquals(3,lb1.size());
         assertTrue(lb1.containsLog(l1));
-        assertEquals(2000,lb1.monthlyExpenditure(Month.of(1)));
+        assertEquals(2000,lb1.monthlyExpenditure(YearMonth.of(2023,1)));
     }
 }
 
