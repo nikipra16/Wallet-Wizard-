@@ -49,10 +49,10 @@ public class BookPage {
                 addLogEntry();
                 break;
             case "b":
-                getMonthlyExpenditure();
+                setMonthlyBudget();
                 break;
             case "c":
-                setMonthlyBudget();
+                getMonthlyExpenditure();
                 break;
             case "d":
                 getBalance();
@@ -67,9 +67,9 @@ public class BookPage {
     private void displayMenu() {
         System.out.println("Select from the following options:");
         System.out.println("\t[a] Make a new entry");
-        System.out.println("\t[b] Get expenditure for a Month");
-        System.out.println("\t[c] Set budget for a Month");
-        System.out.println("\t[d] Get Balance");
+        System.out.println("\t[b] Set budget for a Month");
+        System.out.println("\t[c] Get balance for a Month");
+        System.out.println("\t[d] Get balance for the Year");
         System.out.println("\t[e] quit");
     }
 
@@ -79,7 +79,7 @@ public class BookPage {
             double total;
             total = logBook.totalAmountLeft();
             System.out.println(total);
-            if (total <= 0) {
+            if (total < 0) {
                 System.out.println("YOU ARE IN DEBT!!!");
             }
         } else {
@@ -93,12 +93,17 @@ public class BookPage {
         System.out.print("Enter budget amount: ");
         double amount = input.nextDouble();
         Budget budget = new Budget();
-        budget.setMonthlyBudget(amount,Month.of(month));
-        System.out.println("A budget of " + budget.getBudget() + " for " + budget.getMonth());
+        if (amount > 0) {
+            budget.setMonthlyBudget(amount,Month.of(month));
+            System.out.println("A budget of " + budget.getBudget() + " for " + budget.getMonth());
+        } else {
+            System.out.println("BUDGET MUST BE GREATER THAN $0!!!");
+        }
+
     }
 
     private void getMonthlyExpenditure() {
-        System.out.print("Enter month number: ");
+        System.out.print("Enter Year and Month (yyyy/mm): ");
         String date = input.next();
         DateTimeFormatter d = DateTimeFormatter.ofPattern("yyyy/MM");
         YearMonth yearMonth = YearMonth.parse(date, d);

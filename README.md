@@ -9,12 +9,12 @@ and easy.
 
 
 ### User Stories
-- As a user, I want to be able to add credit amount to my logbook.
-- As a user, I want to be able to add the debit amount to my logbook.
+- As a user, I want to be able to add amount earned to my logbook.
+- As a user, I want to be able to add the amount spent to my logbook.
 - As a user, I can check the amount spent in a month.
 - As a user, I want to be able to set a budget for a month in my logbook.
 - As a user, I want to be able to set a category to each entry in my logbook.
-- As a user, I want to be able to check my balance so far.
+- As a user, I want to be able to check my balance for the year.
 - As a user, I want to be able to check a star on the months when I save money and meet my budget.(not yet executed)
 - As a user, I want to be able to check if I meet my budget every time I enter a debit into my logbook.(not yet executed)
 
