@@ -43,6 +43,8 @@ public class BookPage {
         System.out.println("\nGoodbye!");
     }
 
+    // MODIFIES: this
+    // EFFECTS: processes user command
     private void processCommand(String command) {
         switch (command) {
             case "a":
@@ -63,7 +65,7 @@ public class BookPage {
         }
     }
 
-
+    // EFFECTS: displays menu of options to user
     private void displayMenu() {
         System.out.println("Select from the following options:");
         System.out.println("\t[a] Make a new entry");
@@ -73,6 +75,8 @@ public class BookPage {
         System.out.println("\t[e] quit");
     }
 
+    //REQUIRES: at least one log entry
+    // EFFECTS: returns balance
     private void getBalance() {
         System.out.println("Your Balance:");
         if (logBook.size() > 0) {
@@ -87,6 +91,9 @@ public class BookPage {
         }
     }
 
+    //REQUIRES: amount > 0
+    //MODIFIES: Budget
+    // EFFECTS: sets a budget for a month
     private void setMonthlyBudget() {
         System.out.print("Enter month number: ");
         int month = input.nextInt();
@@ -102,6 +109,7 @@ public class BookPage {
 
     }
 
+    // EFFECTS: get balance for a month
     private void getMonthlyExpenditure() {
         System.out.print("Enter Year and Month (yyyy/mm): ");
         String date = input.next();
@@ -116,6 +124,8 @@ public class BookPage {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds a Log entry to the Book
     private void addLogEntry() {
         System.out.print("Enter date: yyyy/mm/dd: ");
         String date = input.next();

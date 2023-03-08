@@ -4,9 +4,11 @@ import java.time.Year;
 import java.time.YearMonth;
 import java.util.ArrayList;
 
+//Represents a Book containing the log entries.
 public class Book {
     private  ArrayList<LogEntry> logbook;
 
+    //EFFECTS: constructs a logbook
     public Book() {
         logbook = new ArrayList<>();
     }

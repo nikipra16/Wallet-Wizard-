@@ -2,10 +2,13 @@ package model;
 
 import java.time.Month;
 
+//Represents a budget containing an amount in dollars for a given month.
 public class Budget {
     private double budget;
     private Month month;
 
+    //REQUIRES: budget amount >= $0
+    //EFFECTS: constructs a budget in $ for a month
     public Budget() {
         this.budget = 0;
         this.month = null;

@@ -3,11 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-
+//Represents a category with a given name and contains the log entries under that category
 public class Category {
     private String categoryName;
     private ArrayList<LogEntry> categoryLogs;
 
+    //EFFECTS: constructs a category with a given name and contains the log entries under that category
     public Category(String categoryName) {
         categoryLogs = new ArrayList<>();
         this.categoryName = categoryName;
@@ -25,6 +26,8 @@ public class Category {
         }
     }
 
+    //MODIFIES:this and LogEntry
+    //EFFECTS:removes LogEntry from a Category if the entry is of that category
     public void removeLogFromCategory(LogEntry logbookEntry) {
         if (categoryLogs.contains(logbookEntry)) {
             categoryLogs.remove(logbookEntry);
@@ -32,11 +35,12 @@ public class Category {
         }
     }
 
+    //EFFECTS:returns category name
     public String getCategoryName() {
         return categoryName;
     }
 
-
+    //EFFECTS:returns the logs under a category
     public List<LogEntry> getCategoryLogs() {
         return categoryLogs;
     }

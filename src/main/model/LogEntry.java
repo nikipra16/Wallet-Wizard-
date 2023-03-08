@@ -2,11 +2,13 @@ package model;
 
 import java.time.LocalDate;
 
+//Represents a log entry containing a date, amount and a category
 public class LogEntry {
     private LocalDate date;
     private double amount;
     private Category category;
 
+    //EFFECTS: constructs a log entry with a given date, amount and a category
     public LogEntry(LocalDate date, double amount) {
         this.date = date;
         this.amount = amount;
