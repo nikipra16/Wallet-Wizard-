@@ -22,7 +22,7 @@ public class BookTest {
         l2 = new LogEntry(LocalDate.of(2023, 1, 2), 1000);
         l3 = new LogEntry(LocalDate.of(2019, 1, 2), 100);
 
-        lb1 = new Book();
+        lb1 = new Book("Nikita's Book");
 
 
     }

@@ -147,7 +147,7 @@ public class BookPage {
     // MODIFIES: this
     // EFFECTS: initializes accounts
     private void init() {
-        logBook = new Book();
+        logBook = new Book("");
         input = new Scanner(System.in);
         input.useDelimiter("\n");
     }

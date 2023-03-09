@@ -6,10 +6,12 @@ import java.util.ArrayList;
 
 //Represents a Book containing the log entries.
 public class Book {
+    private String name;
     private  ArrayList<LogEntry> logbook;
 
     //EFFECTS: constructs a logbook
-    public Book() {
+    public Book(String name) {
+        this.name = name;
         logbook = new ArrayList<>();
     }
 
