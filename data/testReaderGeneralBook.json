@@ -1,0 +1,15 @@
+{
+  "LogEntries": [
+    {
+      "Category": "shop",
+      "Amount": 200,
+      "Date": "2022-04-09"
+    },
+    {
+      "Category": "salary",
+      "Amount": 2000,
+      "Date": "2033-05-06"
+    }
+  ],
+  "Name": ""
+}

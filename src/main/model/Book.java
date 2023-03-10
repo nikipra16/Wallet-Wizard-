@@ -1,11 +1,17 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.time.Year;
 import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 //Represents a Book containing the log entries.
-public class Book {
+public class Book implements Writable {
     private String name;
     private  ArrayList<LogEntry> logbook;
 
@@ -60,5 +66,34 @@ public class Book {
         return logbook.contains(logbookEntry);
     }
 
+    //EFFECTS: save Book to JSON
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Name", name);
+        json.put("LogEntries", logEntriesToJson());
+        return json;
+    }
+
+    //EFFECTS: returns name of the book
+    public String getName() {
+        return this.name;
+    }
+
+    // EFFECTS: returns an unmodifiable list of thingies in this workroom
+    public List<LogEntry> getEntries() {
+        return Collections.unmodifiableList(logbook);
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray logEntriesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (LogEntry logEntry : logbook) {
+            jsonArray.put(logEntry.toJson());
+        }
+
+        return jsonArray;
+    }
 
 }

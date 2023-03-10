@@ -19,7 +19,7 @@ public class CategoryTest {
         c1 = new Category("Salary");
 
 //        l1 = new LogEntry(LocalDate.of(2023, 1, 1), -25);
-        l2 = new LogEntry(LocalDate.of(2023, 1, 2), 1000);
+        l2 = new LogEntry(LocalDate.of(2023, 1, 2), 1000,c1);
 
         c1Items = c1.getCategoryLogs();
 

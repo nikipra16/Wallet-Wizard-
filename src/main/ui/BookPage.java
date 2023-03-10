@@ -4,7 +4,11 @@ import model.Book;
 import model.Budget;
 import model.Category;
 import model.LogEntry;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.YearMonth;
@@ -14,10 +18,14 @@ import java.util.Scanner;
 public class BookPage {
     private Book logBook;
     private Scanner input;
-
+    private static final String JSON_STORE = "./data/Book.json";
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the teller application
-    public BookPage() {
+    public BookPage() throws FileNotFoundException {
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runBook();
     }
 
@@ -33,7 +41,7 @@ public class BookPage {
             displayMenu();
             command = input.next();
             command = command.toLowerCase();
-            if (command.equals("e")) {
+            if (command.equals("q")) {
                 keepGoing = false;
             } else {
                 processCommand(command);
@@ -59,6 +67,12 @@ public class BookPage {
             case "d":
                 getBalance();
                 break;
+            case "e":
+                saveWorkRoom();
+                break;
+            case "f":
+                loadWorkRoom();
+                break;
             default:
                 System.out.println("Selection not valid...");
                 break;
@@ -72,7 +86,9 @@ public class BookPage {
         System.out.println("\t[b] Set budget for a Month");
         System.out.println("\t[c] Get balance for a Month");
         System.out.println("\t[d] Get balance for the Year");
-        System.out.println("\t[e] quit");
+        System.out.println("\t[e] Save LogBook");
+        System.out.println("\t[f] Load LogBook");
+        System.out.println("\t[q] quit");
     }
 
     //REQUIRES: at least one log entry
@@ -136,7 +152,7 @@ public class BookPage {
         System.out.print("Enter category: ");
         String categoryName = input.next();
         Category category = new Category(categoryName);
-        LogEntry log = new LogEntry(logDate, amount);
+        LogEntry log = new LogEntry(logDate, amount,category);
         log.setCategory(category);
         logBook.addLog(log);
         System.out.println("Added $" + log.getAmount() + " to your Book under " + category.getCategoryName()
@@ -147,9 +163,32 @@ public class BookPage {
     // MODIFIES: this
     // EFFECTS: initializes accounts
     private void init() {
-        logBook = new Book("");
+        logBook = new Book("Book");
         input = new Scanner(System.in);
         input.useDelimiter("\n");
+    }
+
+    // EFFECTS: saves the workroom to file
+    private void saveWorkRoom() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(logBook);
+            jsonWriter.close();
+            System.out.println("Saved " + logBook.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadWorkRoom() {
+        try {
+            logBook = jsonReader.read();
+            System.out.println("Loaded " + logBook.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 
 }

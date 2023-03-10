@@ -1,0 +1,15 @@
+{
+    "LogEntries": [
+        {
+            "Category": "Salary",
+            "Amount": 1000,
+            "Date": "2022-02-02"
+        },
+        {
+            "Category": "Food",
+            "Amount": -200,
+            "Date": "2022-04-03"
+        }
+    ],
+    "Name": "Book"
+}

@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.stream.Stream;
 
+import model.Category;
 import model.LogEntry;
 import org.json.*;
 
@@ -43,7 +44,7 @@ public class JsonReader {
 
     // EFFECTS: parses workroom from JSON object and returns it
     private Book parseBook(JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
+        String name = jsonObject.getString("Name");
         Book b = new Book(name);
         addLogEntries(b, jsonObject);
         return b;
@@ -51,25 +52,40 @@ public class JsonReader {
 
     // MODIFIES: wr
     // EFFECTS: parses thingies from JSON object and adds them to workroom
-    private void addLogEntries(Book wr, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("thingies");
+    private void addLogEntries(Book b, JSONObject jsonObject) {
+        JSONArray jsonArray = jsonObject.getJSONArray("LogEntries");
         for (Object json : jsonArray) {
-            JSONObject nextThingy = (JSONObject) json;
-            addLogEntry(wr, nextThingy);
+            JSONObject nextEntry = (JSONObject) json;
+            addLogEntry(b, nextEntry);
         }
     }
 
     // MODIFIES: wr
     // EFFECTS: parses thingy from JSON object and adds it to workroom
     private void addLogEntry(Book b, JSONObject jsonObject) {
-        Double amount = jsonObject.getDouble("amount");
-//      Category category = Category.valueOf(jsonObject.getString("category"));
-        String date = jsonObject.getString("date");
-        DateTimeFormatter d = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        LocalDate logDate = LocalDate.parse(date, d);
-        JSONObject js = new JSONObject();
-        js.put("logDate", logDate);
-        LogEntry logentry = new LogEntry(logDate,amount);
+//        String logDate = jsonObject.getString("Date");
+        Double amount = jsonObject.getDouble("Amount");
+        String category1 = jsonObject.getString("Category");
+        Category category = new Category(category1);
+//        Category category = Category.valueOf(jsonObject.getString("category"));
+//        int year = LocalDate.now().getYear();
+//        int month =  LocalDate.now().getMonthValue();
+//        int dayOfMonth = LocalDate.now().getDayOfMonth();
+//        year = jsonObject.getInt("year");
+//        month = jsonObject.getInt("Month");
+//        dayOfMonth = jsonObject.getInt("Day");
+//        LocalDate logDate = LocalDate.of(year,month,dayOfMonth);
+//          LocalDate date = jsonObject.getString(logDate);
+//        LogEntry logEntry = null;
+//        int year = logEntry.getDate().getYear();
+//        int month = logEntry.getDate().getMonthValue();
+//        int day = logEntry.getDate().getDayOfMonth();
+        String date = jsonObject.getString("Date");
+//        DateTimeFormatter d = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDate logDate = LocalDate.parse(date);
+//        LocalDate logDate = LocalDate.of(year,month,day);
+        LogEntry logentry = new LogEntry(logDate,amount, category);
+        logentry.setCategory(category);
         b.addLog(logentry);
     }
 }

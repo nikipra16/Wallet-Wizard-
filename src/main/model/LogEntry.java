@@ -1,15 +1,18 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.time.LocalDate;
 
 //Represents a log entry containing a date, amount and a category
-public class LogEntry {
+public class LogEntry implements Writable {
     private LocalDate date;
     private double amount;
     private Category category;
 
     //EFFECTS: constructs a log entry with a given date, amount and a category
-    public LogEntry(LocalDate date, double amount) {
+    public LogEntry(LocalDate date, double amount, Category category) {
         this.date = date;
         this.amount = amount;
         this.category = new Category("Not Categorized");
@@ -51,6 +54,16 @@ public class LogEntry {
                 setCategory(category);
             }
         }
+    }
+
+    //EFFECTS: save logEntry to JSON
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Date", this.date);
+        json.put("Amount", this.amount);
+        json.put("Category", this.category.getCategoryName());
+        return json;
     }
 }
 
