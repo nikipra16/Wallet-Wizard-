@@ -73,4 +73,9 @@ class LogEntryTest {
         assertEquals(0,l1.getAmount());
         assertEquals(1000,l2.getAmount());
     }
+
+    @Test
+    public void toStringTest() {
+        assertEquals("Date: 2023-02-01  Amount: 0.0  Category: Not Categorized",l1.toString());
+    }
 }
