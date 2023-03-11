@@ -6,7 +6,7 @@ import org.json.JSONObject;
 
 import java.io.*;
 
-// Represents a writer that writes JSON representation of workroom to file
+// Represents a writer that writes JSON representation of logbook to file
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
@@ -25,7 +25,7 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of workroom to file
+    // EFFECTS: writes JSON representation of logbook to file
     public void write(Book logBook) {
         JSONObject json = logBook.toJson();
         saveToFile(json.toString(TAB));
@@ -43,3 +43,7 @@ public class JsonWriter {
         writer.print(json);
     }
 }
+
+//REFERENCE:
+// Build software better, together. GitHub. (n.d.). Retrieved March 7, 2023,
+// from https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo

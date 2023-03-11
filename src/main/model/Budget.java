@@ -8,6 +8,7 @@ public class Budget {
     private Month month;
 
     //REQUIRES: budget amount >= $0
+    //MODIFIES: this
     //EFFECTS: constructs a budget in $ for a month
     public Budget() {
         this.budget = 0;
@@ -17,6 +18,7 @@ public class Budget {
 //    public void setBudget(double budget) {
 //        this.budget = budget;
 //    }
+
     //EFFECTS: returns the budget in $
     public double getBudget() {
         return budget;
@@ -28,6 +30,7 @@ public class Budget {
     }
 
     //MODIFIES: this
+    //EFFECTS: sets a budget for a given month
     public void setMonthlyBudget(double budget, Month month) {
         this.month = month;
         this.budget = budget;

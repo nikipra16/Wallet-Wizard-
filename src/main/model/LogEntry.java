@@ -50,10 +50,16 @@ public class LogEntry implements Writable {
             if (this.category == category) {
                 this.category = new Category("Not Categorized");
                 category.removeLogFromCategory(this);
-            } else  {
+            } else {
                 setCategory(category);
             }
         }
+    }
+
+    // EFFECTS: returns string representation of this logEntry
+    public String toString() {
+        return  "Date: " + this.getDate().toString() + "  " + "Amount: " + this.getAmount() + "  " + "Category: "
+                + this.getCategory().getCategoryName();
     }
 
     //EFFECTS: save logEntry to JSON

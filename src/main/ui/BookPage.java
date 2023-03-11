@@ -11,8 +11,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Month;
-import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
 
 public class BookPage {
@@ -61,17 +61,19 @@ public class BookPage {
             case "b":
                 setMonthlyBudget();
                 break;
+//            case "c":
+//                getMonthlyExpenditure();
+//                break;
             case "c":
-                getMonthlyExpenditure();
-                break;
-            case "d":
                 getBalance();
                 break;
-            case "e":
+            case "s":
                 saveWorkRoom();
                 break;
-            case "f":
+            case "l":
                 loadWorkRoom();
+            case "p":
+                printThingies();
                 break;
             default:
                 System.out.println("Selection not valid...");
@@ -84,10 +86,11 @@ public class BookPage {
         System.out.println("Select from the following options:");
         System.out.println("\t[a] Make a new entry");
         System.out.println("\t[b] Set budget for a Month");
-        System.out.println("\t[c] Get balance for a Month");
-        System.out.println("\t[d] Get balance for the Year");
-        System.out.println("\t[e] Save LogBook");
-        System.out.println("\t[f] Load LogBook");
+//        System.out.println("\t[c] Get balance for a Month");
+        System.out.println("\t[c] Get balance for the Year");
+        System.out.println("\t[s] Save LogBook");
+        System.out.println("\t[l] Load LogBook");
+        System.out.println("\t[p] Print LogBook");
         System.out.println("\t[q] quit");
     }
 
@@ -125,20 +128,6 @@ public class BookPage {
 
     }
 
-    // EFFECTS: get balance for a month
-    private void getMonthlyExpenditure() {
-        System.out.print("Enter Year and Month (yyyy/mm): ");
-        String date = input.next();
-        DateTimeFormatter d = DateTimeFormatter.ofPattern("yyyy/MM");
-        YearMonth yearMonth = YearMonth.parse(date, d);
-        if (logBook.size() > 0) {
-            double total;
-            total = logBook.monthlyExpenditure(yearMonth);
-            System.out.println(total);
-        } else {
-            System.out.println("No entries");
-        }
-    }
 
     //MODIFIES: this
     //EFFECTS: adds a Log entry to the Book
@@ -168,7 +157,7 @@ public class BookPage {
         input.useDelimiter("\n");
     }
 
-    // EFFECTS: saves the workroom to file
+    // EFFECTS: saves logbook to file
     private void saveWorkRoom() {
         try {
             jsonWriter.open();
@@ -181,7 +170,7 @@ public class BookPage {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads workroom from file
+    // EFFECTS: loads logbook from file
     private void loadWorkRoom() {
         try {
             logBook = jsonReader.read();
@@ -190,5 +179,29 @@ public class BookPage {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
+
+    // EFFECTS: prints all the logEntries in logbook to the console
+    private void printThingies() {
+        List<LogEntry> logEntries = logBook.getEntries();
+
+        for (LogEntry logEntry : logEntries) {
+            System.out.println(logEntry);
+        }
+    }
+
+//    // EFFECTS: get balance for a month
+//    private void getMonthlyExpenditure() {
+//        System.out.print("Enter Year and Month (yyyy/mm): ");
+//        String date = input.next();
+//        DateTimeFormatter d = DateTimeFormatter.ofPattern("yyyy/MM");
+//        YearMonth yearMonth = YearMonth.parse(date, d);
+//        if (logBook.size() > 0) {
+//            double total;
+//            total = logBook.monthlyExpenditure(yearMonth);
+//            System.out.println(total);
+//        } else {
+//            System.out.println("No entries");
+//        }
+//    }
 
 }

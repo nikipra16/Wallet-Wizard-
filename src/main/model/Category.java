@@ -26,8 +26,8 @@ public class Category {
         }
     }
 
-    //MODIFIES:this and LogEntry
-    //EFFECTS:removes LogEntry from a Category if the entry is of that category
+    //MODIFIES: this and LogEntry
+    //EFFECTS: removes LogEntry from a Category if the entry is of that category
     public void removeLogFromCategory(LogEntry logbookEntry) {
         if (categoryLogs.contains(logbookEntry)) {
             categoryLogs.remove(logbookEntry);
@@ -35,12 +35,12 @@ public class Category {
         }
     }
 
-    //EFFECTS:returns category name
+    //EFFECTS: returns category name
     public String getCategoryName() {
         return categoryName;
     }
 
-    //EFFECTS:returns the logs under a category
+    //EFFECTS: returns the logEntries under a category
     public List<LogEntry> getCategoryLogs() {
         return categoryLogs;
     }
