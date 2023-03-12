@@ -41,6 +41,25 @@ public class LogEntry implements Writable {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        LogEntry logEntry = (LogEntry) o;
+
+        return category.equals(logEntry.category);
+    }
+
+    @Override
+    public int hashCode() {
+        return category.hashCode();
+    }
+
     //MODIFIES: this and category
     //EFFECTS: if entry is already categorized change it to new category or uncategorized if new category
     // is the same as current category
