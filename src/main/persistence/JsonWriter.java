@@ -1,7 +1,6 @@
 package persistence;
 
 import model.Book;
-import model.Category;
 import org.json.JSONObject;
 
 

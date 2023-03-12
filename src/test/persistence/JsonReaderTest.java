@@ -1,7 +1,7 @@
 package persistence;
 
 
-import model.Category;
+
 import model.LogEntry;
 import model.Book;
 import org.junit.jupiter.api.Test;

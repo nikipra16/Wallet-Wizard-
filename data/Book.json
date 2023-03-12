@@ -1,20 +1,8 @@
 {
-    "LogEntries": [
-        {
-            "Category": "Salary",
-            "Amount": 20000,
-            "Date": "2023-04-04"
-        },
-        {
-            "Category": "Grocery",
-            "Amount": -200,
-            "Date": "2022-04-04"
-        },
-        {
-            "Category": "Grocery",
-            "Amount": -200,
-            "Date": "2023-05-05"
-        }
-    ],
+    "LogEntries": [{
+        "Category": "Shop",
+        "Amount": 200,
+        "Date": "2022-04-04"
+    }],
     "Name": "Book"
 }

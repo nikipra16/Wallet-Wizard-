@@ -1,7 +1,6 @@
 package ui;
 
 import model.Book;
-import model.Category;
 import model.LogEntry;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -16,7 +15,6 @@ import java.util.Scanner;
 
 public class BookPage {
     private Book logBook;
-    private Category category;
     private Scanner input;
     private static final String JSON_STORE = "./data/Book.json";
     private JsonWriter jsonWriter;
@@ -119,11 +117,10 @@ public class BookPage {
         double amount = input.nextDouble();
         System.out.print("Enter category: ");
         String categoryName = input.next();
-        Category category1 = new Category(categoryName);
-        LogEntry log = new LogEntry(logDate, amount,category1);
-        log.setCategory(category1);
+        LogEntry log = new LogEntry(logDate, amount,categoryName);
+        log.setCategory(categoryName);
         logBook.addLog(log);
-        System.out.println("Added $" + log.getAmount() + " to your Book under " + category1.getCategoryName()
+        System.out.println("Added $" + log.getAmount() + " to your Book under " + categoryName
                 + ".");
     }
 

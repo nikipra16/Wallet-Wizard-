@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.stream.Stream;
 
 
-import model.Category;
+
 import model.LogEntry;
 import org.json.*;
 
@@ -65,8 +65,7 @@ public class JsonReader {
     // EFFECTS: parses thingy from JSON object and adds it to logbook
     private void addLogEntry(Book b, JSONObject jsonObject) {
         Double amount = jsonObject.getDouble("Amount");
-        String category1 = jsonObject.getString("Category");
-        Category category = new Category(category1);
+        String category = jsonObject.getString("Category");
         String date = jsonObject.getString("Date");
         LocalDate logDate = LocalDate.parse(date);
         LogEntry logentry = new LogEntry(logDate,amount, category);

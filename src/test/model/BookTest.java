@@ -11,17 +11,16 @@ public class BookTest {
     private LogEntry l1;
     private LogEntry l2;
     private LogEntry l3;
-    private Category c1;
+
 
 
     private Book lb1;
 
     @BeforeEach
     void runBefore() {
-        c1 = new Category("Salary");
-        l1 = new LogEntry(LocalDate.of(2023, 3, 1), -25,c1);
-        l2 = new LogEntry(LocalDate.of(2023, 1, 2), 1000,c1);
-        l3 = new LogEntry(LocalDate.of(2019, 1, 2), 100,c1);
+        l1 = new LogEntry(LocalDate.of(2023, 3, 1), -25,"Food");
+        l2 = new LogEntry(LocalDate.of(2023, 1, 2), 1000,"Salary");
+        l3 = new LogEntry(LocalDate.of(2019, 1, 2), 100,"Salary");
 
         lb1 = new Book("Nikita's Book");
 

@@ -1,7 +1,7 @@
 package persistence;
 
 
-import model.Category;
+
 import model.LogEntry;
 import model.Book;
 import org.junit.jupiter.api.Test;
@@ -35,7 +35,6 @@ class JsonWriterTest extends JsonTest {
             Book logBook = new Book("My Book");
 //            Budget budget = new Budget(Month.FEBRUARY);
 //            budget.setMonthlyBudget(100,Month.FEBRUARY);
-            Category category = new Category("Food");
             JsonWriter writer = new JsonWriter("./data/testWriterEmptyBook.json");
             writer.open();
             writer.write(logBook);
@@ -52,14 +51,13 @@ class JsonWriterTest extends JsonTest {
 
     @Test
     void testWriterGeneralWorkroom() {
-        Category c1 = new Category("Salary");
-        Category c2 = new Category("Food");
+        String c1 = "Salary";
+        String c2 = "Food";
 
         try {
             Book logBook = new Book("Book");
 //            Budget budget = new Budget(Month.FEBRUARY);
 //            budget.setMonthlyBudget(100,Month.FEBRUARY);
-            Category category = new Category("Food");
             LogEntry l1 = new LogEntry(LocalDate.of(2022, 02, 02), 1000,c1);
             l1.setCategory(c1);
             LogEntry l2 = new LogEntry(LocalDate.of(2022, 04, 03), -200,c2);
@@ -77,8 +75,8 @@ class JsonWriterTest extends JsonTest {
             logBook.getEntries();
             List<LogEntry> logEntries = logBook.getEntries();
             assertEquals(2, logEntries.size());
-            checkEntry(LocalDate.of(2022,02,02), 1000.0,c1.getCategoryName(), logEntries.get(0));
-            checkEntry((LocalDate.of(2022,04,03)), -200.0,c2.getCategoryName(), logEntries.get(1));
+            checkEntry(LocalDate.of(2022,02,02), 1000.0,c1, logEntries.get(0));
+            checkEntry((LocalDate.of(2022,04,03)), -200.0,c2, logEntries.get(1));
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");
