@@ -60,8 +60,8 @@ class LogEntryTest {
         assertNotEquals("Not Categorized",l2.getCategory());
         l2.changeCategory("Salary");
         assertEquals("Not Categorized",l2.getCategory());
-        l2.setCategory("Grocery");
-        assertEquals("Grocery",l2.getCategory());
+        l2.changeCategory("Grocery");
+        assertEquals("Not Categorized",l2.getCategory());
     }
 
     @Test
