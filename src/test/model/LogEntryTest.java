@@ -48,9 +48,10 @@ class LogEntryTest {
     public void changeCategory() {
         l2.setCategory("Salary");
         assertEquals("Salary",l2.getCategory());
-        l2.changeCategory("Food");
-        assertNotEquals("Salary", "Food");
-        assertEquals("Food",l2.getCategory());
+        assertNotEquals("Salary", "Shopping");
+        l2.changeCategory("Shopping");
+        assertNotEquals("Salary", "Shopping");
+        assertEquals("Shopping",l2.getCategory());
     }
     @Test
     public void resetThenChangeTest() {
