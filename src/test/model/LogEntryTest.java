@@ -56,6 +56,7 @@ class LogEntryTest {
     public void resetThenChangeTest() {
         l2.setCategory("Salary");
         assertEquals("Salary",l2.getCategory());
+        assertNotEquals("Not Categorized",l2.getCategory());
         l2.changeCategory("Salary");
         assertEquals("Not Categorized",l2.getCategory());
         l2.setCategory("Grocery");
