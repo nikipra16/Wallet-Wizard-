@@ -3,6 +3,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -49,6 +50,6 @@ public class CategoryTest {
     @Test
     public void getLogEntriesTest() {
         c1.addLogToCategory(l2);
-        assertEquals(List.of(l2),c1.getLogEntries());
+        assertEquals(Arrays.asList(l2),c1.getLogEntries());
     }
 }
