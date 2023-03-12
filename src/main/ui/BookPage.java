@@ -1,7 +1,6 @@
 package ui;
 
 import model.Book;
-import model.Budget;
 import model.Category;
 import model.LogEntry;
 import persistence.JsonReader;
@@ -10,13 +9,14 @@ import persistence.JsonWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.Month;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
 public class BookPage {
     private Book logBook;
+    private Category category;
     private Scanner input;
     private static final String JSON_STORE = "./data/Book.json";
     private JsonWriter jsonWriter;
@@ -59,11 +59,8 @@ public class BookPage {
                 addLogEntry();
                 break;
             case "b":
-                setMonthlyBudget();
+                getMonthlyExpenditure();
                 break;
-//            case "c":
-//                getMonthlyExpenditure();
-//                break;
             case "c":
                 getBalance();
                 break;
@@ -71,9 +68,10 @@ public class BookPage {
                 saveWorkRoom();
                 break;
             case "l":
-                loadWorkRoom();
+                load();
+                break;
             case "p":
-                printThingies();
+                printLogBook();
                 break;
             default:
                 System.out.println("Selection not valid...");
@@ -85,8 +83,7 @@ public class BookPage {
     private void displayMenu() {
         System.out.println("Select from the following options:");
         System.out.println("\t[a] Make a new entry");
-        System.out.println("\t[b] Set budget for a Month");
-//        System.out.println("\t[c] Get balance for a Month");
+        System.out.println("\t[b] Get balance for a Month");
         System.out.println("\t[c] Get balance for the Year");
         System.out.println("\t[s] Save LogBook");
         System.out.println("\t[l] Load LogBook");
@@ -110,27 +107,9 @@ public class BookPage {
         }
     }
 
-    //REQUIRES: amount > 0
-    //MODIFIES: Budget
-    // EFFECTS: sets a budget for a month
-    private void setMonthlyBudget() {
-        System.out.print("Enter month number: ");
-        int month = input.nextInt();
-        System.out.print("Enter budget amount: ");
-        double amount = input.nextDouble();
-        Budget budget = new Budget();
-        if (amount > 0) {
-            budget.setMonthlyBudget(amount,Month.of(month));
-            System.out.println("A budget of " + budget.getBudget() + " for " + budget.getMonth());
-        } else {
-            System.out.println("BUDGET MUST BE GREATER THAN $0!!!");
-        }
-
-    }
-
 
     //MODIFIES: this
-    //EFFECTS: adds a Log entry to the Book
+    //EFFECTS: adds a log entry to the Book
     private void addLogEntry() {
         System.out.print("Enter date: yyyy/mm/dd: ");
         String date = input.next();
@@ -140,19 +119,20 @@ public class BookPage {
         double amount = input.nextDouble();
         System.out.print("Enter category: ");
         String categoryName = input.next();
-        Category category = new Category(categoryName);
-        LogEntry log = new LogEntry(logDate, amount,category);
-        log.setCategory(category);
+        Category category1 = new Category(categoryName);
+        LogEntry log = new LogEntry(logDate, amount,category1);
+        log.setCategory(category1);
         logBook.addLog(log);
-        System.out.println("Added $" + log.getAmount() + " to your Book under " + category.getCategoryName()
+        System.out.println("Added $" + log.getAmount() + " to your Book under " + category1.getCategoryName()
                 + ".");
     }
 
 
     // MODIFIES: this
-    // EFFECTS: initializes accounts
+    // EFFECTS: initializes logbook
     private void init() {
         logBook = new Book("Book");
+
         input = new Scanner(System.in);
         input.useDelimiter("\n");
     }
@@ -162,6 +142,7 @@ public class BookPage {
         try {
             jsonWriter.open();
             jsonWriter.write(logBook);
+//            jsonWriter.writeCategory(category);
             jsonWriter.close();
             System.out.println("Saved " + logBook.getName() + " to " + JSON_STORE);
         } catch (FileNotFoundException e) {
@@ -171,17 +152,18 @@ public class BookPage {
 
     // MODIFIES: this
     // EFFECTS: loads logbook from file
-    private void loadWorkRoom() {
+    private void load() {
         try {
-            logBook = jsonReader.read();
+            logBook = jsonReader.readBook();
             System.out.println("Loaded " + logBook.getName() + " from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 
-    // EFFECTS: prints all the logEntries in logbook to the console
-    private void printThingies() {
+
+    //EFFECTS: prints logbook
+    private void printLogBook() {
         List<LogEntry> logEntries = logBook.getEntries();
 
         for (LogEntry logEntry : logEntries) {
@@ -189,19 +171,49 @@ public class BookPage {
         }
     }
 
-//    // EFFECTS: get balance for a month
-//    private void getMonthlyExpenditure() {
-//        System.out.print("Enter Year and Month (yyyy/mm): ");
-//        String date = input.next();
-//        DateTimeFormatter d = DateTimeFormatter.ofPattern("yyyy/MM");
-//        YearMonth yearMonth = YearMonth.parse(date, d);
-//        if (logBook.size() > 0) {
-//            double total;
-//            total = logBook.monthlyExpenditure(yearMonth);
-//            System.out.println(total);
-//        } else {
-//            System.out.println("No entries");
+
+    // EFFECTS: get balance for a month
+    private void getMonthlyExpenditure() {
+        System.out.print("Enter Year and Month (yyyy/mm): ");
+        String date = input.next();
+        DateTimeFormatter d = DateTimeFormatter.ofPattern("yyyy/MM");
+        YearMonth yearMonth = YearMonth.parse(date, d);
+        if (logBook.size() > 0) {
+            double total;
+            total = logBook.monthlyExpenditure(yearMonth);
+            System.out.println(total);
+        } else {
+            System.out.println("No entries");
+        }
+    }
+
+    //    //EFFECTS: prints entries in a category
+//    private void printCategory() {
+//        List<LogEntry> logEntries = category.getLogEntries();
+//
+//        for (LogEntry logEntry : logEntries) {
+//            System.out.println(logEntry);
 //        }
 //    }
+
+    //REQUIRES: amount > 0
+    //MODIFIES: Budget
+    // EFFECTS: sets a budget for a month
+//    private void setMonthlyBudget() {
+//        System.out.print("Enter month number: ");
+//        int month = input.nextInt();
+//        System.out.print("Enter budget amount: ");
+//        double amount = input.nextDouble();
+//        Budget budget = new Budget(Month.of(month));
+//        if (amount > 0) {
+//            budget.setMonthlyBudget(amount,Month.of(month));
+//            System.out.println("A budget of " + budget.getBudget() + " for " + budget.getMonth());
+//        } else {
+//            System.out.println("BUDGET MUST BE GREATER THAN $0!!!");
+//        }
+//
+//    }
+
+
 
 }

@@ -8,6 +8,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.stream.Stream;
+
+
 import model.Category;
 import model.LogEntry;
 import org.json.*;
@@ -23,10 +25,11 @@ public class JsonReader {
 
     // EFFECTS: reads logbook from file and returns it;
     // throws IOException if an error occurs reading data from file
-    public Book read() throws IOException {
+    public Book readBook() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseBook(jsonObject);
+
     }
 
     // EFFECTS: reads source file as string and returns it
@@ -59,18 +62,18 @@ public class JsonReader {
     }
 
     // MODIFIES: b
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
+    // EFFECTS: parses thingy from JSON object and adds it to logbook
     private void addLogEntry(Book b, JSONObject jsonObject) {
         Double amount = jsonObject.getDouble("Amount");
         String category1 = jsonObject.getString("Category");
         Category category = new Category(category1);
         String date = jsonObject.getString("Date");
-//        DateTimeFormatter d = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate logDate = LocalDate.parse(date);
         LogEntry logentry = new LogEntry(logDate,amount, category);
         logentry.setCategory(category);
         b.addLog(logentry);
     }
+
 }
 
 //REFERENCE:

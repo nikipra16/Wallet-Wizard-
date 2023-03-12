@@ -45,4 +45,10 @@ public class CategoryTest {
         c1.removeLogFromCategory(l2);
         assertFalse(c1Items.contains(l2));
     }
+
+    @Test
+    public void getLogEntriesTest() {
+        c1.addLogToCategory(l2);
+        assertEquals(List.of(l2),c1.getLogEntries());
+    }
 }

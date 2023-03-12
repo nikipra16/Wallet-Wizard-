@@ -1,12 +1,12 @@
 package persistence;
 
+
 import model.Category;
 import model.LogEntry;
 import model.Book;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,7 +17,7 @@ class JsonReaderTest extends JsonTest {
     void testReaderNonExistentFile() {
         JsonReader reader = new JsonReader("./data/noSuchFile.json");
         try {
-            Book logBook = reader.read();
+            Book logBook = reader.readBook();
             fail("IOException expected");
         } catch (IOException e) {
             // pass
@@ -28,26 +28,50 @@ class JsonReaderTest extends JsonTest {
     void testReaderEmptyWorkRoom() {
         JsonReader reader = new JsonReader("./data/testReaderEmptyBook.json");
         try {
-            Book logBook = reader.read();
-            assertEquals("My work room", logBook.getName());
+            Book logBook = reader.readBook();
+            assertEquals("My Book", logBook.getName());
             assertEquals(0, logBook.size());
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
     }
 
+
+//    @Test
+//    void testReaderEmptyCategory() {
+//        JsonReader reader = new JsonReader("./data/testReaderEmptyCategory.json");
+//        try {
+//            Category category = reader.readCategory();
+//            assertEquals("", category.getCategoryName());
+//            assertEquals(0, category.getCategoryLogs().size());
+//        } catch (IOException e) {
+//            fail("Couldn't read from file");
+//        }
+//    }
+
     @Test
-    void testReaderGeneralWorkRoom() {
+    void testReaderGeneralBook() {
         JsonReader reader = new JsonReader("./data/testReaderGeneralBook.json");
         try {
-            Book logBook = reader.read();
+            Book logBook = reader.readBook();
             assertEquals("", logBook.getName());
             List<LogEntry> logEntries = logBook.getEntries();
             assertEquals(2, logEntries.size());
-//            checkEntry(LocalDate.of());
-//            checkEntry("saw", Category.WOODWORK, thingies.get(1));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
     }
+
+//    @Test
+//    void testReaderGeneralBudget() {
+//        JsonReader reader = new JsonReader("./data/testReaderGeneralBook.json");
+//        try {
+//            Book logBook = reader.readBook();
+//            assertEquals("", logBook.getName());
+//            List<LogEntry> logEntries = logBook.getEntries();
+//            assertEquals(2, logEntries.size());
+//        } catch (IOException e) {
+//            fail("Couldn't read from file");
+//        }
+//    }
 }

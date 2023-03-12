@@ -2,13 +2,18 @@
     "LogEntries": [
         {
             "Category": "Salary",
-            "Amount": 2.0E9,
-            "Date": "2022-03-03"
+            "Amount": 20000,
+            "Date": "2023-04-04"
         },
         {
-            "Category": "Food",
+            "Category": "Grocery",
             "Amount": -200,
-            "Date": "2022-05-06"
+            "Date": "2022-04-04"
+        },
+        {
+            "Category": "Grocery",
+            "Amount": -200,
+            "Date": "2023-05-05"
         }
     ],
     "Name": "Book"

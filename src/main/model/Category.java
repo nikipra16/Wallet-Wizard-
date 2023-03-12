@@ -1,10 +1,15 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 //Represents a category with a given name and contains the log entries under that category
-public class Category {
+public class Category implements Writable {
     private String categoryName;
     private ArrayList<LogEntry> categoryLogs;
 
@@ -19,7 +24,6 @@ public class Category {
     public boolean addLogToCategory(LogEntry logbookEntry) {
         if (!categoryLogs.contains(logbookEntry)) {
             categoryLogs.add(logbookEntry);
-            logbookEntry.setCategory(this);
             return true;
         } else {
             return false;
@@ -45,5 +49,27 @@ public class Category {
         return categoryLogs;
     }
 
+    // EFFECTS: returns an unmodifiable list of logEntries in this logbook
+    public List<LogEntry> getLogEntries() {
+        return Collections.unmodifiableList(categoryLogs);
+    }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Logs", logEntriesToJson());
+        json.put("Name", this.categoryName);
+        return json;
+    }
+
+    // EFFECTS: returns things in this logbook as a JSON array
+    private JSONArray logEntriesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (LogEntry logEntry : categoryLogs) {
+            jsonArray.put(logEntry.toJson());
+        }
+
+        return jsonArray;
+    }
 }

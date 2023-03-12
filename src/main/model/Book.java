@@ -61,22 +61,22 @@ public class Book implements Writable {
         return logbook.size();
     }
 
-    //EFFECTS: checks if a LogEntry is in the Book
+    //EFFECTS: checks if a LogEntry is in the logbook
     public boolean containsLog(LogEntry logbookEntry) {
         return logbook.contains(logbookEntry);
     }
 
-    //EFFECTS: returns name of the book
+    //EFFECTS: returns name of the logbook
     public String getName() {
         return this.name;
     }
 
-    // EFFECTS: returns an unmodifiable list of thingies in this workroom
+    // EFFECTS: returns an unmodifiable list of logEntries in this logbook
     public List<LogEntry> getEntries() {
         return Collections.unmodifiableList(logbook);
     }
 
-    //EFFECTS: save Book to JSON
+    //EFFECTS: save logbook to JSON
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -85,7 +85,7 @@ public class Book implements Writable {
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns things in this logbook as a JSON array
     private JSONArray logEntriesToJson() {
         JSONArray jsonArray = new JSONArray();
 

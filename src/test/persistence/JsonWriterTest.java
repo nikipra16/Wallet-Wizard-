@@ -1,5 +1,6 @@
 package persistence;
 
+
 import model.Category;
 import model.LogEntry;
 import model.Book;
@@ -31,15 +32,18 @@ class JsonWriterTest extends JsonTest {
     @Test
     void testWriterEmptyWorkroom() {
         try {
-            Book logBook = new Book("My work room");
+            Book logBook = new Book("My Book");
+//            Budget budget = new Budget(Month.FEBRUARY);
+//            budget.setMonthlyBudget(100,Month.FEBRUARY);
+            Category category = new Category("Food");
             JsonWriter writer = new JsonWriter("./data/testWriterEmptyBook.json");
             writer.open();
             writer.write(logBook);
             writer.close();
 
             JsonReader reader = new JsonReader("./data/testWriterEmptyBook.json");
-            logBook = reader.read();
-            assertEquals("My work room", logBook.getName());
+            logBook = reader.readBook();
+            assertEquals("My Book", logBook.getName());
             assertEquals(0, logBook.size());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
@@ -53,6 +57,9 @@ class JsonWriterTest extends JsonTest {
 
         try {
             Book logBook = new Book("Book");
+//            Budget budget = new Budget(Month.FEBRUARY);
+//            budget.setMonthlyBudget(100,Month.FEBRUARY);
+            Category category = new Category("Food");
             LogEntry l1 = new LogEntry(LocalDate.of(2022, 02, 02), 1000,c1);
             l1.setCategory(c1);
             LogEntry l2 = new LogEntry(LocalDate.of(2022, 04, 03), -200,c2);
@@ -65,7 +72,7 @@ class JsonWriterTest extends JsonTest {
             writer.close();
 
             JsonReader reader = new JsonReader("./data/testWriterBook.json");
-            logBook = reader.read();
+            logBook = reader.readBook();
             assertEquals("Book", logBook.getName());
             logBook.getEntries();
             List<LogEntry> logEntries = logBook.getEntries();
