@@ -4,6 +4,7 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 //Represents a log entry containing a date, amount and a category
 public class LogEntry implements Writable {
@@ -36,28 +37,9 @@ public class LogEntry implements Writable {
     //MODIFIES:this and category
     //EFFECTS: if entry is not categorized or category is different from current category change it to category
     public void setCategory(String category) {
-        if (this.getCategory().equals("Not Categorized") || this.category != category) {
+        if (this.getCategory().equals("Not Categorized") || !Objects.equals(this.category, category)) {
             this.category = category;
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        LogEntry logEntry = (LogEntry) o;
-
-        return category.equals(logEntry.category);
-    }
-
-    @Override
-    public int hashCode() {
-        return category.hashCode();
     }
 
     //MODIFIES: this and category
@@ -65,8 +47,8 @@ public class LogEntry implements Writable {
     // is the same as current category
     public void changeCategory(String category) {
         if (!this.getCategory().equals("Not Categorized")) {
-            if (this.category == category) {
-                this.category = "Not Categorized";
+            if (Objects.equals(this.category, category)) {
+                this.setCategory("Not Categorized");
             } else {
                 setCategory(category);
             }
