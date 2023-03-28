@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
+//represents a bookpage
 public class BookPage {
     private Book logBook;
     private Scanner input;
@@ -29,7 +30,7 @@ public class BookPage {
 
     // MODIFIES: this
     // EFFECTS: processes user input
-    private void runBook() {
+    public void runBook() {
         boolean keepGoing = true;
         String command = null;
 
@@ -51,7 +52,7 @@ public class BookPage {
 
     // MODIFIES: this
     // EFFECTS: processes user command
-    private void processCommand(String command) {
+    public void processCommand(String command) {
         switch (command) {
             case "a":
                 addLogEntry();
@@ -78,7 +79,7 @@ public class BookPage {
     }
 
     // EFFECTS: displays menu of options to user
-    private void displayMenu() {
+    public void displayMenu() {
         System.out.println("Select from the following options:");
         System.out.println("\t[a] Make a new entry");
         System.out.println("\t[b] Get balance for a Month");
@@ -91,7 +92,7 @@ public class BookPage {
 
     //REQUIRES: at least one log entry
     // EFFECTS: returns balance
-    private void getBalance() {
+    public void getBalance() {
         System.out.println("Your Balance:");
         if (logBook.size() > 0) {
             double total;
@@ -108,7 +109,7 @@ public class BookPage {
 
     //MODIFIES: this
     //EFFECTS: adds a log entry to the Book
-    private void addLogEntry() {
+    public void addLogEntry() {
         System.out.print("Enter date: yyyy/mm/dd: ");
         String date = input.next();
         DateTimeFormatter d = DateTimeFormatter.ofPattern("yyyy/MM/dd");
@@ -127,7 +128,7 @@ public class BookPage {
 
     // MODIFIES: this
     // EFFECTS: initializes logbook
-    private void init() {
+    public void init() {
         logBook = new Book("Book");
 
         input = new Scanner(System.in);
@@ -135,7 +136,7 @@ public class BookPage {
     }
 
     // EFFECTS: saves logbook to file
-    private void saveWorkRoom() {
+    public void saveWorkRoom() {
         try {
             jsonWriter.open();
             jsonWriter.write(logBook);
@@ -149,7 +150,7 @@ public class BookPage {
 
     // MODIFIES: this
     // EFFECTS: loads logbook from file
-    private void load() {
+    public void load() {
         try {
             logBook = jsonReader.readBook();
             System.out.println("Loaded " + logBook.getName() + " from " + JSON_STORE);
@@ -160,7 +161,7 @@ public class BookPage {
 
 
     //EFFECTS: prints logbook
-    private void printLogBook() {
+    public void printLogBook() {
         List<LogEntry> logEntries = logBook.getEntries();
 
         for (LogEntry logEntry : logEntries) {
@@ -170,7 +171,7 @@ public class BookPage {
 
 
     // EFFECTS: get balance for a month
-    private void getMonthlyExpenditure() {
+    public void getMonthlyExpenditure() {
         System.out.print("Enter Year and Month (yyyy/mm): ");
         String date = input.next();
         DateTimeFormatter d = DateTimeFormatter.ofPattern("yyyy/MM");
@@ -183,6 +184,12 @@ public class BookPage {
             System.out.println("No entries");
         }
     }
+
+    public void runAppGui() throws IOException {
+//        load();
+        LogEntriesPanel gui2 = new LogEntriesPanel();
+    }
+
 
     //    //EFFECTS: prints entries in a category
 //    private void printCategory() {

@@ -1,14 +1,14 @@
 {
     "LogEntries": [
         {
-            "Category": "s",
-            "Amount": 200,
-            "Date": "2034-05-05"
+            "Category": "shopping",
+            "Amount": -20,
+            "Date": "2023-05-05"
         },
         {
-            "Category": "w",
-            "Amount": 200,
-            "Date": "2023-04-04"
+            "Category": "grocery",
+            "Amount": -200,
+            "Date": "2022-04-06"
         }
     ],
     "Name": "Book"
