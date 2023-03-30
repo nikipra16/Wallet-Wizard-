@@ -16,7 +16,7 @@ import java.util.List;
 //represents a GUI
 public class Gui extends JFrame implements ActionListener {
     private JTextField dateField;
-    private JFormattedTextField amountField;
+    private JTextField amountField;
     private JTextField categoryField;
     private NumberFormat amountDisplayFormat;
     private SimpleDateFormat dateDisplayFormat;
@@ -39,6 +39,7 @@ public class Gui extends JFrame implements ActionListener {
         entries = new JList<>(entriesList);
         loadTabs();
         add(tabs);
+        setBackground(Color.pink);
         setVisible(true);
 
     }
@@ -74,7 +75,7 @@ public class Gui extends JFrame implements ActionListener {
     //EFFECTS: loads tabs,panels and buttons
     public void loadTabs() {
         homePanel = new JPanel(new GridLayout(5, 2));
-        setFormats();
+        homePanel.setBackground(Color.getHSBColor(100,25,20));
         setFields();
         setLabels();
         JButton enter = new JButton("enter");
@@ -88,7 +89,6 @@ public class Gui extends JFrame implements ActionListener {
         homePanel.add(load);
         tabs.add(homePanel, 0);
         tabs.setTitleAt(0, "Home");
-
         JPanel panel = new JPanel(new BorderLayout());
         JScrollPane entryPanel = new JScrollPane(entries);
         panel.add(entryPanel,BorderLayout.CENTER);
@@ -120,7 +120,10 @@ public class Gui extends JFrame implements ActionListener {
 
     //EFFECTS: sets the fields
     public void setFields() {
-        amountField = new JFormattedTextField(amountDisplayFormat);
+
+        dateDisplayFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateEditFormat = new SimpleDateFormat("yyyy-MM-dd");
+        amountField = new JTextField();
         amountField.setColumns(10);
         dateField = new JFormattedTextField(dateEditFormat);
         dateField.setColumns(10);
@@ -128,21 +131,17 @@ public class Gui extends JFrame implements ActionListener {
         categoryField.setColumns(10);
     }
 
-    //EFFECTS: sets the format
-    public void setFormats() {
-        amountDisplayFormat = NumberFormat.getNumberInstance();
-        NumberFormat amountEditFormat = NumberFormat.getNumberInstance();
-        dateDisplayFormat = new SimpleDateFormat("yyyy-MM-dd");
-        dateEditFormat = new SimpleDateFormat("yyyy-MM-dd");
-    }
 
     //EFFECTS: sets the labels
     public void setLabels() {
-        JLabel amountLabel = new JLabel("Amount");
+        JLabel amountLabel = new JLabel("   Amount");
         amountLabel.setLabelFor(amountField);
-        JLabel dateLabel = new JLabel("Date");
+        amountLabel.setFont(new Font("Courier Bold", Font.PLAIN, 15));
+        JLabel dateLabel = new JLabel("   Date");
+        dateLabel.setFont(new Font("Courier Bold", Font.PLAIN, 15));
         dateLabel.setLabelFor(dateField);
-        JLabel categoryLabel = new JLabel("Category");
+        JLabel categoryLabel = new JLabel("   Category");
+        categoryLabel.setFont(new Font("Courier Bold", Font.PLAIN, 15));
         categoryLabel.setLabelFor(categoryField);
         homePanel.add(dateLabel);
         homePanel.add(dateField);
