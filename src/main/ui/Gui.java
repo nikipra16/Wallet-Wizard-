@@ -29,9 +29,11 @@ public class Gui extends JFrame implements ActionListener {
 
     //EFFECTS: Constructs the Gui
     public Gui(BookPage bookPage) {
+        welcomeWindow();
         this.bookPage = bookPage;
         setTitle("Log Entries");
         tabs = new JTabbedPane();
+        setBounds(500, 10, 500, 400);
         tabs.setTabPlacement(JTabbedPane.TOP);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
@@ -149,6 +151,22 @@ public class Gui extends JFrame implements ActionListener {
         homePanel.add(amountField);
         homePanel.add(categoryLabel);
         homePanel.add(categoryField);
+    }
+
+    private void welcomeWindow() {
+        JWindow welcomeWindow = new JWindow();
+        ImageIcon image = new ImageIcon("data/projectImage.jpg","logo");
+        welcomeWindow.getContentPane().add(
+                new JLabel("",image, JLabel.CENTER));
+        welcomeWindow.setBounds(500, 10, 400, 500);
+        welcomeWindow.setVisible(true);
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        welcomeWindow.setVisible(false);
+        welcomeWindow.dispose();
     }
 
     //EFFECTS: saves and ends the Gui
