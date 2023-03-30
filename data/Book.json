@@ -9,6 +9,21 @@
             "Category": "grocery",
             "Amount": -200,
             "Date": "2022-04-06"
+        },
+        {
+            "Category": "tea",
+            "Amount": -23,
+            "Date": "2022-09-09"
+        },
+        {
+            "Category": "food",
+            "Amount": -25,
+            "Date": "2022-09-09"
+        },
+        {
+            "Category": "salary",
+            "Amount": 600,
+            "Date": "2022-09-09"
         }
     ],
     "Name": "Book"

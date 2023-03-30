@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
-//represents a bookpage
+//represents a book page
 public class BookPage {
     private Book logBook;
     private Scanner input;
@@ -22,7 +22,7 @@ public class BookPage {
     private JsonReader jsonReader;
 
     // EFFECTS: runs the teller application
-    public BookPage() throws FileNotFoundException {
+    public BookPage() throws IOException {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
         runBook();
@@ -30,11 +30,12 @@ public class BookPage {
 
     // MODIFIES: this
     // EFFECTS: processes user input
-    public void runBook() {
+    public void runBook() throws IOException {
         boolean keepGoing = true;
         String command = null;
 
         init();
+        runGui();
 
         while (keepGoing) {
             displayMenu();
@@ -64,7 +65,7 @@ public class BookPage {
                 getBalance();
                 break;
             case "s":
-                saveWorkRoom();
+                saveBook();
                 break;
             case "l":
                 load();
@@ -136,7 +137,7 @@ public class BookPage {
     }
 
     // EFFECTS: saves logbook to file
-    public void saveWorkRoom() {
+    public void saveBook() {
         try {
             jsonWriter.open();
             jsonWriter.write(logBook);
@@ -185,9 +186,14 @@ public class BookPage {
         }
     }
 
-    public void runAppGui() throws IOException {
+    public Book getBook() {
+        return this.logBook;
+    }
+
+    public void runGui() throws IOException {
 //        load();
-        LogEntriesPanel gui2 = new LogEntriesPanel();
+        new Gui(this);
+
     }
 
 
