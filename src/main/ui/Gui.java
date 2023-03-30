@@ -153,6 +153,7 @@ public class Gui extends JFrame implements ActionListener {
         homePanel.add(categoryField);
     }
 
+    //EFFECTS: creates the opening window
     private void welcomeWindow() {
         JWindow welcomeWindow = new JWindow();
         ImageIcon image = new ImageIcon("data/projectImage.jpg","logo");

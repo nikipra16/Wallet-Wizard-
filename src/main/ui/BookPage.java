@@ -186,12 +186,13 @@ public class BookPage {
         }
     }
 
+    //EFFECTS: returns the list of entries
     public Book getBook() {
         return this.logBook;
     }
 
+    //EFFECTS: runs the Gui
     public void runGui() throws IOException {
-//        load();
         new Gui(this);
 
     }

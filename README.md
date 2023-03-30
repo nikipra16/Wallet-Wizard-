@@ -17,7 +17,12 @@ and easy.
 - As a user, I want to be able to see my entries.
 - As a user, I want to be able to save my logbook to file (if I so choose). 
 - As a user, I want to be able to be able to load my logbook from file (if I so choose).
-  
-- [//]: # (- As a user, I can check the amount spent in a month.)
+- As a user, I want to be able to see my list of entries.
+- As a user, I want to be able to clear all entries.
 
+
+
+
+References:
+Took help and inspiration from https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html
  
