@@ -73,7 +73,7 @@ public class Book implements Writable {
 
     // EFFECTS: returns an unmodifiable list of logEntries in this logbook
     public List<LogEntry> getEntries() {
-        return Collections.unmodifiableList(logbook);
+        return logbook;
     }
 
     //EFFECTS: save logbook to JSON

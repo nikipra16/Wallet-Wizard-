@@ -20,7 +20,14 @@ and easy.
 - As a user, I want to be able to see my list of entries.
 - As a user, I want to be able to clear all entries.
 
+# Instructions for Grader
 
+- You can generate the first required action related to adding Xs to a Y by adding a logentry to the logbook.
+- You can generate the second required action related to adding Xs to a Y by clearing all entries by pressing remove all
+- entries button.
+- You can locate my visual component when opening the app.
+- You can save the state of my application by pressing the save and exit button.
+- You can reload the state of my application by pressing the load button.
 
 
 References:
