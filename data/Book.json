@@ -1,8 +1,4 @@
 {
-    "LogEntries": [{
-        "Category": "shop",
-        "Amount": -200,
-        "Date": "2023-09-09"
-    }],
+    "LogEntries": [],
     "Name": "Book"
 }

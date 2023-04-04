@@ -110,6 +110,7 @@ public class Gui extends JFrame implements ActionListener {
         }
         if (e.getActionCommand().equals("clear entries")) {
             entriesList.clear();
+            bookPage.getBook().getEntries().clear();
         }
         if (e.getActionCommand().equals("save and exit")) {
             endGui();
