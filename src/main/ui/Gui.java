@@ -4,14 +4,15 @@ import model.LogEntry;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import model.Event;
+import model.EventLog;
+
 
 //represents a GUI
 public class Gui extends JFrame implements ActionListener {
@@ -22,10 +23,12 @@ public class Gui extends JFrame implements ActionListener {
     private SimpleDateFormat dateDisplayFormat;
     private SimpleDateFormat dateEditFormat;
     private JPanel homePanel;
+    private JPanel balancePanel;
     private JList<String> entries;
     private DefaultListModel<String> entriesList;
     private final JTabbedPane tabs;
-    private BookPage bookPage;
+    private static BookPage bookPage;
+    private JTextArea display;
 
     //EFFECTS: Constructs the Gui
     public Gui(BookPage bookPage) {
@@ -36,14 +39,35 @@ public class Gui extends JFrame implements ActionListener {
         setBounds(500, 10, 500, 400);
         tabs.setTabPlacement(JTabbedPane.TOP);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        close();
         setSize(400, 300);
         entriesList = new DefaultListModel<>();
         entries = new JList<>(entriesList);
         loadTabs();
+//        setBalancePanel();
         add(tabs);
         setBackground(Color.pink);
         setVisible(true);
 
+    }
+
+
+    public void close() {
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int close = JOptionPane.showConfirmDialog(Gui.this,"Do you want to exit?",
+                        "Close App",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+                if (close == JOptionPane.YES_OPTION) {
+                    printLog(EventLog.getInstance());
+                    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                } else if (close == JOptionPane.NO_OPTION) {
+                    setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                }
+            }
+        });
     }
 
     //EFFECTS: adds logEntry and displays it in the panel
@@ -81,7 +105,7 @@ public class Gui extends JFrame implements ActionListener {
         setFields();
         setLabels();
         JButton enter = new JButton("enter");
-        JButton save = new JButton("save and exit");
+        JButton save = new JButton("save");
         JButton load = new JButton("load");
         load.addActionListener(this);
         save.addActionListener(this);
@@ -100,8 +124,23 @@ public class Gui extends JFrame implements ActionListener {
         tabs.add(panel, 1);
         tabs.setTitleAt(1, "Entries");
 
-
     }
+
+//    public void setBalancePanel() {
+//        balancePanel = new JPanel();
+//        tabs.add(balancePanel,2);
+//        tabs.setTitleAt(2,"Balance");
+//        JPanel yearPanel = new JPanel(new BorderLayout());
+//        yearPanel.setSize(400,150);
+//        balancePanel.add(yearPanel);
+//        double balance = bookPage.getBalance();
+//        JLabel yearLabel = new JLabel("Balance");
+//        yearLabel.setText(String.valueOf(balance));
+//        yearLabel.setSize(400,150);
+//        balancePanel.add(yearLabel);
+//
+//
+//    }
 
     //EFFECTS: action performed according to the button clicked
     public void actionPerformed(ActionEvent e) {
@@ -110,10 +149,10 @@ public class Gui extends JFrame implements ActionListener {
         }
         if (e.getActionCommand().equals("clear entries")) {
             entriesList.clear();
-            bookPage.getBook().getEntries().clear();
+            bookPage.getBook().clearAllEntries();
         }
-        if (e.getActionCommand().equals("save and exit")) {
-            endGui();
+        if (e.getActionCommand().equals("save")) {
+            saveGui();
         }
         if (e.getActionCommand().equals("load")) {
             loadDisplay();
@@ -140,7 +179,7 @@ public class Gui extends JFrame implements ActionListener {
         JLabel amountLabel = new JLabel("   Amount");
         amountLabel.setLabelFor(amountField);
         amountLabel.setFont(new Font("Courier Bold", Font.PLAIN, 15));
-        JLabel dateLabel = new JLabel("   Date");
+        JLabel dateLabel = new JLabel("   Date(yyyy-MM-dd)");
         dateLabel.setFont(new Font("Courier Bold", Font.PLAIN, 15));
         dateLabel.setLabelFor(dateField);
         JLabel categoryLabel = new JLabel("   Category");
@@ -171,12 +210,20 @@ public class Gui extends JFrame implements ActionListener {
         welcomeWindow.dispose();
     }
 
-    //EFFECTS: saves and ends the Gui
-    private void endGui() {
-        bookPage.saveBook();
-        WindowEvent saveWindow = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
-        dispatchEvent(saveWindow);
+    public void printLog(EventLog el) {
+        for (Event next : el) {
+            System.out.println(next.toString());
+        }
+
+        repaint();
     }
 
+    //EFFECTS: saves and ends the Gui
+    private void saveGui() {
+        bookPage.saveBook();
+//        WindowEvent saveWindow = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+//        printLog(EventLog.getInstance());
+//        dispatchEvent(saveWindow);
+    }
 
 }

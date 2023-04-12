@@ -25,12 +25,19 @@ public class Book implements Writable {
     //EFFECTS:adds a logEntry to Book
     public void addLog(LogEntry log) {
         logbook.add(log);
+        EventLog.getInstance().logEvent(new Event("A log entry under " + log.getCategory() + " is added"));
     }
 
     //MODIFIES:this
     //EFFECTS:removes a logEntry to Book
     public void removeLog(LogEntry log) {
         logbook.remove(log);
+        EventLog.getInstance().logEvent(new Event("A log entry under " + log.getCategory() + " is removed"));
+    }
+
+    public void clearAllEntries() {
+        logbook.clear();
+        EventLog.getInstance().logEvent(new Event("Cleared all entries!!!"));
     }
 
     //EFFECTS: returns total amount spent/earned
