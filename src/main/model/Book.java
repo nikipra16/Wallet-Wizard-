@@ -25,7 +25,8 @@ public class Book implements Writable {
     //EFFECTS:adds a logEntry to Book
     public void addLog(LogEntry log) {
         logbook.add(log);
-        EventLog.getInstance().logEvent(new Event("A log entry under " + log.getCategory() + " is added"));
+        EventLog.getInstance().logEvent(new Event("A logentry (" + "Category:" + log.getCategory()
+                + " Amount:" + log.getAmount() + ") was added to the LogBook!"));
     }
 
     //MODIFIES:this
