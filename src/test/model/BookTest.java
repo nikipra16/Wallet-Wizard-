@@ -39,6 +39,16 @@ public class BookTest {
     }
 
     @Test
+    public void clearEntriesTest() {
+        lb1.addLog(l2);
+        lb1.addLog(l1);
+        lb1.clearAllEntries();
+        assertFalse(lb1.containsLog(l1));
+        assertFalse(lb1.containsLog(l2));
+        assertEquals(0,lb1.size());
+    }
+
+    @Test
     public void removeLogTest() {
         lb1.addLog(l2);
         lb1.addLog(l1);
