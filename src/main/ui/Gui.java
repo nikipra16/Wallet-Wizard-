@@ -5,7 +5,6 @@ import model.LogEntry;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -19,18 +18,15 @@ public class Gui extends JFrame implements ActionListener {
     private JTextField dateField;
     private JTextField amountField;
     private JTextField categoryField;
-    private NumberFormat amountDisplayFormat;
     private SimpleDateFormat dateDisplayFormat;
     private SimpleDateFormat dateEditFormat;
     private JPanel homePanel;
-    private JPanel balancePanel;
     private JList<String> entries;
     private DefaultListModel<String> entriesList;
     private final JTabbedPane tabs;
     private static BookPage bookPage;
-    private JTextArea display;
 
-    //EFFECTS: Constructs the Gui
+    //EFFECTS: Constructs the GUI
     public Gui(BookPage bookPage) {
         welcomeWindow();
         this.bookPage = bookPage;
@@ -44,7 +40,6 @@ public class Gui extends JFrame implements ActionListener {
         entriesList = new DefaultListModel<>();
         entries = new JList<>(entriesList);
         loadTabs();
-//        setBalancePanel();
         add(tabs);
         setBackground(Color.pink);
         setVisible(true);
@@ -126,21 +121,6 @@ public class Gui extends JFrame implements ActionListener {
 
     }
 
-//    public void setBalancePanel() {
-//        balancePanel = new JPanel();
-//        tabs.add(balancePanel,2);
-//        tabs.setTitleAt(2,"Balance");
-//        JPanel yearPanel = new JPanel(new BorderLayout());
-//        yearPanel.setSize(400,150);
-//        balancePanel.add(yearPanel);
-//        double balance = bookPage.getBalance();
-//        JLabel yearLabel = new JLabel("Balance");
-//        yearLabel.setText(String.valueOf(balance));
-//        yearLabel.setSize(400,150);
-//        balancePanel.add(yearLabel);
-//
-//
-//    }
 
     //EFFECTS: action performed according to the button clicked
     public void actionPerformed(ActionEvent e) {

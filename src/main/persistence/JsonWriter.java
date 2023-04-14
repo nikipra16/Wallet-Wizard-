@@ -2,8 +2,6 @@ package persistence;
 
 import model.Book;
 import org.json.JSONObject;
-
-
 import java.io.*;
 
 // Represents a writer that writes JSON representation of logbook to file

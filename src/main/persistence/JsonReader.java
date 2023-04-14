@@ -1,16 +1,12 @@
 package persistence;
 
 import model.Book;
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.stream.Stream;
-
-
-
 import model.LogEntry;
 import org.json.*;
 
