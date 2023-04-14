@@ -1,4 +1,15 @@
 {
-    "LogEntries": [],
+    "LogEntries": [
+        {
+            "Category": "Salary",
+            "Amount": 2000,
+            "Date": "2023-04-09"
+        },
+        {
+            "Category": "Coffee",
+            "Amount": -10,
+            "Date": "2023-04-07"
+        }
+    ],
     "Name": "Book"
 }
