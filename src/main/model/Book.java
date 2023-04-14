@@ -90,6 +90,7 @@ public class Book implements Writable {
         JSONObject json = new JSONObject();
         json.put("Name", name);
         json.put("LogEntries", logEntriesToJson());
+        EventLog.getInstance().logEvent(new Event("Saved Entries"));
         return json;
     }
 
