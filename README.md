@@ -26,7 +26,7 @@ and easy.
 - You can generate the second required action related to adding Xs to a Y by clearing all entries by pressing remove all
    entries button.
 - You can locate my visual component when opening the app.
-- You can save the state of my application by pressing the save and exit button.
+- You can save the state of my application by pressing the save button.
 - You can reload the state of my application by pressing the load button.
 
 # Phase 4: Task 2
