@@ -1,11 +1,7 @@
 # My Personal Project
 
  A simple personal finance application which one can use to check their savings or debt. Features include 
-entering deposits and expenditure,categorize where you spend the money on like food, shopping,etc., a chart visualizing
-the analytics of your monthly expenditure, receiving a star mark next to the months when
-you meet the budget and save money. Budgeting is an essential skill especially for teenagers and young adults. Anyone
-who wants to learn to budget to save or improve their budgeting skills can use the app to make budgeting more organised
-and easy.
+entering deposits and expenditure,categorize where you spend the money on like food, shopping,etc. Budgeting is an essential skill especially for teenagers and young adults. Anyone who wants to learn to budget to save or improve their budgeting skills can use the app to make budgeting more organised and easy.
 
 
 ### User Stories
